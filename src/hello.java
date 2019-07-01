@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Hello {
+public class hello {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("What will your square be made of?");
