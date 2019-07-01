@@ -9,6 +9,7 @@ public class hello {
 		int z = scan.nextInt();
 		System.out.println("What will the length of your rectangle be?");
 		int r = scan.nextInt();
+		scan.close();
 		for(int i = 0; i<z; i++) {
 			for(int x = 0; x<r; x++) {
 				System.out.print(y + " ");
