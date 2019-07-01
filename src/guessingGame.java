@@ -31,7 +31,7 @@ public class guessingGame {
 					System.out.println("You have " + lives +" "+(lives>1 ? "lives" : "life")+" left");
 				}
 				else {
-					System.out.print("You are out of lives");
+					System.out.println("You are out of lives");
 					System.out.print("The number was " + num);
 					loop = false;
 				}
