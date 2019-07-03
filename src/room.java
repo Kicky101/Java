@@ -61,6 +61,7 @@ public class room {
 				break;
 			}
 		}
+		scan.close();
 	}
 	
 	private static String[][]setupRoom(String[][] room, int[] playerCoords, int[] goalCoords) {
