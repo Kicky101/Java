@@ -11,16 +11,38 @@ public class connectBore {
 		}
 		printBoard(board);
 		while(true) {
-			System.out.println("Red turn");
-			System.out.print("Where will you place your marker: ");
-			int redTurn = scan.nextInt();
+			int redTurn = -1;
+			int yellowTurn = -1;
+			while(true) {
+				System.out.println("Red turn");
+				System.out.print("Where will you place your marker: ");
+				redTurn = scan.nextInt();
+				if(redTurn>board.length-1 || redTurn<0) {
+					System.out.println("That coordinate does not exist");
+					continue;
+				}break;
+			}
 			board = placePiece(board,true,redTurn);
 			printBoard(board);
-			System.out.println("Yellow turn");
-			System.out.print("Where will you place your marker: ");
-			int yellowTurn = scan.nextInt();
+			if(checkWin(board)!=null) {
+				System.out.println(checkWin(board)+" wins!");
+				break;
+			}
+			while(true) {
+				System.out.println("Yellow turn");
+				System.out.print("Where will you place your marker: ");
+				yellowTurn = scan.nextInt();
+				if(yellowTurn>board.length || yellowTurn<0) {
+					System.out.println("That coordinate does not exist");
+					continue;
+				}break;
+			}
 			board = placePiece(board,false,yellowTurn);
 			printBoard(board);
+			if(checkWin(board)!=null) {
+				System.out.println("Yellow wins!");
+				break;
+			}
 		}
 	}
 	private static void printBoard(String[][] board) {
@@ -46,5 +68,34 @@ public class connectBore {
 			}
 		}
 		return board;
+	}
+	private static String checkWin(String[][] board) {
+		for(int i = 0; i<board.length; i++) {
+			for(int j = 0; j<board[0].length; j++) {
+				if(board[i][j].equals("-")) {
+					continue;
+				}
+				if(i < board.length-3) {
+					if(board[i][j].equals(board[i+1][j]) && board[i][j].equals(board[i+2][j]) && board[i][j].equals(board[i+3][j])) {
+						return board[i][j];
+					}
+				}
+				else if(j < board[0].length-3) {
+					if(board[i][j].equals(board[i][j+1]) && board[i][j].equals(board[i][j+2]) && board[i][j].equals(board[i][j+3])) {
+						return board[i][j];
+					}
+				}
+				else if(i < board.length-3 && j < board[0].length-3) {
+					if(board[i][j].equals(board[i+1][j+1]) && board[i][j].equals(board[i+2][j+2]) && board[i][j].equals(board[i+3][j+3])) {
+						return board[i][j];
+					}
+				}else if(i < board.length-3 && j >=3 ) {
+					if(board[i][j].equals(board[i+1][j-1]) && board[i][j].equals(board[i+2][j-2]) && board[i][j].equals(board[i+3][j-3])) {
+						return board[i][j];
+					}
+				}
+			}
+		}
+		return null;
 	}
 }
