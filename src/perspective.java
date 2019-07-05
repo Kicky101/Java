@@ -214,6 +214,7 @@ public class perspective {
 				}
 			}
 			System.out.println("You both decide to stick together to find a way out of this mess");
+			System.out.println("Christian decides to mine out of the cave but realizes his Pickaxes have broken");
 			System.out.println("Two stalactites fall from the ceiling and Christian starts mkaing things with them");
 			System.out.print("Does Player 2 decide to build a makeshift ladder(1) or two Ice Picks(2): ");
 			String mineDirection = scan.next();
