@@ -122,6 +122,7 @@ public class perspective {
 			System.out.println("You slowly open your eyes to see random chunks of ice scattered about in a hole you're in");
 			System.out.println("You're in a puddle, knee deep");
 			System.out.println("You see another person passed out");
+			System.out.println("Lmao pee pee doo doo");
 		}
 	}
 }
