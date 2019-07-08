@@ -96,3 +96,4 @@
         return firstNum+fib(firstNum-1);
     }
  }
+ //ok
