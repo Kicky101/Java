@@ -3,6 +3,7 @@
  public class recursion { 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        while (true){
         System.out.print("Do you want to break the code(1) count to 0(2) do some factorials(3) add stuff(4) multiply stuff(5) use exponents(6) or mess with the Fibonacci Sequence(7): ");
         int first = scan.nextInt();
         if(first == 1) {
@@ -43,7 +44,9 @@
         if(first == 7) {
             System.out.print("What do you want to go up to: ");
             int firstNum = scan.nextInt();
+           fibb(firstNum);
         }
+    }
     }
     private static void printX() {
         System.out.println("X");
@@ -85,15 +88,25 @@
     }
     private static int exponent(int firstNum, int secondNum) {
         if(secondNum == 1){
+
+    
             return firstNum;
         }
         return firstNum*exponent(firstNum, secondNum-1);
     }
     private static int fib(int firstNum) {
         if(firstNum == 1) {
-            return 2;
+            return 1;
         }
-        return firstNum+fib(firstNum-1);
+        if(firstNum == 0) {
+            return 0;
+        }
+        return fib(firstNum-1)+fib(firstNum-2);
+    }
+    private static void fibb(int firstNum) {
+        for(int i = 0; i<firstNum; i++) {
+            System.out.println(fib(i));
+        }
     }
  }
- //ok
+ 
