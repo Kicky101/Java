@@ -3,7 +3,7 @@
  public class recursion { 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Do you want to break the code(1) count to 0(2) do some factorials(3) or add stuff(4): ");
+        System.out.print("Do you want to break the code(1) count to 0(2) do some factorials(3) add stuff(4) multiply stuff(5) or use exponents(6): ");
         int first = scan.nextInt();
         if(first == 1) {
             printX();
@@ -26,7 +26,20 @@
             int secondNum = scan.nextInt();
             System.out.println(add(firstNum, secondNum));
         }
-        
+        if(first == 5) {
+            System.out.print("What will your first number be: ");
+            int firstNum = scan.nextInt();
+            System.out.print("What will your second number be: ");
+            int secondNum = scan.nextInt();
+            System.out.println(multiply(firstNum, secondNum));
+        }
+        if(first == 6) {
+            System.out.print("What will your first number be: ");
+            int firstNum = scan.nextInt();
+            System.out.print("What will your second number be: ");
+            int secondNum = scan.nextInt();
+            System.out.println(exponent(firstNum, secondNum));
+        }
     }
     private static void printX() {
         System.out.println("X");
@@ -55,9 +68,21 @@
         return inputNum1*factorial(inputNum1-1);
     }
     private static int add(int firstNum, int secondNum) {
-        if(firstNum-1+0 == secondNum){
+        if(secondNum== 0){
             return firstNum;
         } 
-        return 1+add(firstNum, secondNum);
+        return 1+add(firstNum-1, secondNum);
+    }
+    private static int multiply(int firstNum, int secondNum) {
+        if(secondNum == 1){
+            return firstNum;
+        }
+        return firstNum+multiply(firstNum, secondNum-1);
+    }
+    private static int exponent(int firstNum, int secondNum) {
+        if(secondNum == 1){
+            return firstNum;
+        }
+        return firstNum*exponent(firstNum, secondNum-1);
     }
  }
