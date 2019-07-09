@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class haNO {
-	public static void main(String[] args) {
+    static int loop=0;
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         while(true) {
             System.out.print("How large is your Hanoi Tower (1 - 10): ");
@@ -12,7 +13,7 @@ public class haNO {
             }
             else if(size <= 10 || size >= 1) {
                 int from = 1;
-                int to = 1;
+                int to = 3;
                 move(size, from, to);
                 break;
             }
@@ -22,13 +23,42 @@ public class haNO {
     }
     private static void move(int size, int from, int to) {
         if(size == 1) {
-            System.out.println("Move the smallest piece from " + from + " to " + to);
+            System.out.println("Move the " + size + " piece from " + from + " to " + to);
+            loop++;
+            if(loop == 10) {
+                loop = 0;
+                try{
+                    System.out.println("");
+                    System.out.print("Press Enter to continue");
+                    System.in.read();
+                }
+                catch(Exception e){	
+                    e.printStackTrace();
+                }
+                System.out.println("");
+                System.out.println("");
+            }
             return;
         }
         else {
-            
-            move(size-1, from, to);
-            System.out.println("");
+            int b = 3-((from+to)%3);
+            move(size-1, from, b);
+            System.out.println("Move the " + size + " piece from " + from + " to " + to);
+            loop++;
+            if(loop == 10) {
+                loop = 0;
+                try{
+                    System.out.println("");
+                    System.out.print("Press Enter to continue");
+                    System.in.read();
+                }
+                catch(Exception e){	
+                    e.printStackTrace();
+                }
+                System.out.println("");
+                System.out.println("");
+            }
+            move(size-1, b, to);
         }
     }
 }
