@@ -12,6 +12,7 @@ public class binarySearch {
         for(int i = 1; i<=10; i++) {
             bruh[i] = rand.nextInt(50);
         }
+        bruh = selectionSort(bruh);
         for(int i = 0; i<bruh.length; i++) {
 			System.out.println(bruh[i]);
         }
@@ -45,9 +46,19 @@ public class binarySearch {
                 return false;
             }
     }
-    private static int[] insertionSort(int[] bruh) {
-        int endRedacted = 0;
+    private static int[] selectionSort(int[] bruh) {
         int[] what = new int[bruh.length];
-         
+        int deletThis = bruh[0];
+        for(int i = 1; i<bruh.length; i++){
+            if(bruh[i]<deletThis) {
+                deletThis = bruh[i];
+            }
+        }
+        what[0] = deletThis;
+        int[] x = selectionSort(Arrays.copyOfRange(bruh, 1, bruh.length));
+        for(int i = 1; i<what.length; i++) {
+            what[i] = x[i-1];
+        }
+        return what;
     }
 }
