@@ -138,4 +138,28 @@ public class binarySearch {
         }
         System.out.println();
     }
+    private static int[] quickSort(int[] bruh) {
+        if(bruh.length==1) {
+            return bruh;
+        }
+        int b = 0;
+        int bee = 0;
+        int be = 1;
+        int beee = 0;
+        int[] what = new int[bruh.length];
+        while(bruh[bruh.length - beee] < bruh[bruh.length - be]) {
+            b = bruh[bruh.length - be];
+            bruh[bruh.length - be] =  bruh[bruh.length - beee];
+            for(int i = 0; i<bruh.length; i++) {
+                if(bruh[bruh.length - be] > bruh[i]) {
+                    bee = bruh[i];
+                    bruh[i] = b;
+                    bruh[bruh.length - beee] = bee;
+                    break;
+                }
+            }
+            be++;
+            beee++;
+        }
+    }
 }
