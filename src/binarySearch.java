@@ -10,7 +10,7 @@ public class binarySearch {
         Random rand = new Random();
         int[] bruh = new int[rand.nextInt(20)+1];
         for(int i = 0; i<bruh.length; i++) {
-            bruh[i] = rand.nextInt(50);
+            bruh[i] = rand.nextInt(40);
         }
         System.out.println("");
         System.out.println("Unsorted");
@@ -80,9 +80,14 @@ public class binarySearch {
         return what;
     }
     private static int[] mergeSort(int[] bruh) {
+        if(bruh.length==1){
+            return bruh;
+        }
         int[] what = new int[bruh.length];
         int[] breh = Arrays.copyOfRange(bruh,0,bruh.length/2);
         bruh = Arrays.copyOfRange(bruh,bruh.length/2,bruh.length);
+        printArray(breh);
+        printArray(bruh);
         if(bruh.length>1) {
             bruh = mergeSort(bruh);
         }
@@ -108,13 +113,29 @@ public class binarySearch {
         if(bruh.length > 0) {
             for(int i = 0;i<bruh.length;i++) {
                 what[n] = bruh[i];
+                n++;
+                if(bruh.length == 0){
+                    break;
+                }
             }
         }
         else {
             for(int i = 0;i<breh.length;i++) {
                 what[n] = breh[i];
+                n++;
+                if(breh.length == 0){
+                    break;
+                }
             }
         }
+        System.out.println("what: ");printArray(what);
         return what;
+    }
+
+    public static void printArray(int[] x){
+        for(int i = 0; i<x.length; i++) {
+			System.out.println(x[i]);
+        }
+        System.out.println();
     }
 }
