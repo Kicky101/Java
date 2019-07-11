@@ -21,7 +21,7 @@ public class binarySearch {
         System.out.println("");
         System.out.println("Sorted");
         System.out.println("");
-        bruh = selectionSort(bruh);
+        bruh = mergeSort(bruh);
         for(int i = 0; i<bruh.length; i++) {
 			System.out.println(bruh[i]);
         }
@@ -81,6 +81,40 @@ public class binarySearch {
     }
     private static int[] mergeSort(int[] bruh) {
         int[] what = new int[bruh.length];
-        
+        int[] breh = Arrays.copyOfRange(bruh,0,bruh.length/2);
+        bruh = Arrays.copyOfRange(bruh,bruh.length/2,bruh.length);
+        if(bruh.length>1) {
+            bruh = mergeSort(bruh);
+        }
+        if(breh.length>1) {
+            breh = mergeSort(breh);
+        }
+        int b = bruh.length+breh.length-1;
+        int n=0;
+        for(int i = 0; i<b;i++) {
+            if(bruh[0]<breh[0]) {
+                what[i] = bruh[0];
+                bruh = Arrays.copyOfRange(bruh,1,bruh.length);
+            }
+            else if(bruh[0] >= breh[0]) {
+                what[i] = breh[0];
+                breh = Arrays.copyOfRange(breh,1,breh.length);
+            }
+            if(bruh.length==0 || breh.length==0) {
+                n=i+1;
+                break;
+            }
+        }
+        if(bruh.length > 0) {
+            for(int i = 0;i<bruh.length;i++) {
+                what[n] = bruh[i];
+            }
+        }
+        else {
+            for(int i = 0;i<breh.length;i++) {
+                what[n] = breh[i];
+            }
+        }
+        return what;
     }
 }
