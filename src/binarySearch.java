@@ -9,6 +9,8 @@ public class binarySearch {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
         int[] bruh = new int[rand.nextInt(20)+1];
+        int ugh = bruh.length;
+        int[] what = new int[bruh.length];
         for(int i = 0; i<bruh.length; i++) {
             bruh[i] = rand.nextInt(40);
         }
@@ -138,7 +140,8 @@ public class binarySearch {
         }
         System.out.println();
     }
-    private static int[] quickSort(int[] bruh) {
+    //Needs to be redone with one parameter -- recursion concept
+    private static int[] quickSort(int[] bruh, int ugh, int[] what, int[] breh) {
         if(bruh.length==1) {
             return bruh;
         }
@@ -146,8 +149,9 @@ public class binarySearch {
         int bee = 0;
         int be = 1;
         int beee = 0;
-        int[] what = new int[bruh.length];
-        while(bruh[bruh.length - beee] < bruh[bruh.length - be]) {
+        int bei = 1;
+        boolean letterB = true;
+        while(letterB) {
             b = bruh[bruh.length - be];
             bruh[bruh.length - be] =  bruh[bruh.length - beee];
             for(int i = 0; i<bruh.length; i++) {
@@ -158,8 +162,33 @@ public class binarySearch {
                     break;
                 }
             }
+            for(int j = 0; j< bruh.length-bruh.length-beee; j++) {
+                if(bruh[bruh.length - beee] > bruh[bruh.length-beee-bei]) {
+                    bei++;
+                    if(j == bruh.length-bruh.length-beee){
+                        if(bruh.length == ugh){
+                            what = bruh;
+                        }
+                        bruh = Arrays.copyOfRange(bruh, 0, bruh.length-beee-1);
+                        if(bruh.length == ugh){
+                            breh = what;
+                        }
+                        what = Arrays.copyOfRange(what, what.length-beee,what.length-beee);
+                        breh = Arrays.copyOfRange(breh, breh.length-beee+1, breh.length);
+                        
+                        quickSort(bruh, ugh, what, breh);
+                    }
+                }
+                else{
+                    break;
+                }
+            }
             be++;
             beee++;
+            if(bruh.length==0){
+                break;
+            }
         }
-    }
+        return what;
+    }  
 }
