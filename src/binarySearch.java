@@ -72,9 +72,6 @@ public class binarySearch {
             }
         }
         what[0] = deletThis;
-
-
-
         int[] x = selectionSort(Arrays.copyOfRange(bruh, 1, bruh.length));
         for(int i = 1; i<what.length; i++) {
             what[i] = x[i-1];
