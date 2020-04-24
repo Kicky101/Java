@@ -137,55 +137,8 @@ public class binarySearch {
         }
         System.out.println();
     }
-    //Needs to be redone with one parameter -- recursion concept
-    private static int[] quickSort(int[] bruh, int ugh, int[] what, int[] breh) {
-        if(bruh.length==1) {
-            return bruh;
-        }
-        int b = 0;
-        int bee = 0;
-        int be = 1;
-        int beee = 0;
-        int bei = 1;
-        boolean letterB = true;
-        while(letterB) {
-            b = bruh[bruh.length - be];
-            bruh[bruh.length - be] =  bruh[bruh.length - beee];
-            for(int i = 0; i<bruh.length; i++) {
-                if(bruh[bruh.length - be] > bruh[i]) {
-                    bee = bruh[i];
-                    bruh[i] = b;
-                    bruh[bruh.length - beee] = bee;
-                    break;
-                }
-            }
-            for(int j = 0; j< bruh.length-bruh.length-beee; j++) {
-                if(bruh[bruh.length - beee] > bruh[bruh.length-beee-bei]) {
-                    bei++;
-                    if(j == bruh.length-bruh.length-beee){
-                        if(bruh.length == ugh){
-                            what = bruh;
-                        }
-                        bruh = Arrays.copyOfRange(bruh, 0, bruh.length-beee-1);
-                        if(bruh.length == ugh){
-                            breh = what;
-                        }
-                        what = Arrays.copyOfRange(what, what.length-beee,what.length-beee);
-                        breh = Arrays.copyOfRange(breh, breh.length-beee+1, breh.length);
-                        
-                        quickSort(bruh, ugh, what, breh);
-                    }
-                }
-                else{
-                    break;
-                }
-            }
-            be++;
-            beee++;
-            if(bruh.length==0){
-                break;
-            }
-        }
-        return what;
-    }  
+    private static int[] quickSort(int[] bruh, int hello, int ok) {
+    	int funny = ok - hello;
+    	return null;
+    }
 }
