@@ -1,6 +1,6 @@
 public class cardTest {
 	public static void main(String[] args) {
-		Card deck = new Card("s", 2);
+		Card deck = new Card("Clubs", 12);
 		
 		System.out.println(deck.getSuit());
 		
