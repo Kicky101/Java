@@ -7,5 +7,11 @@ public class cardTest {
 		System.out.println(deck.getNumber());
 		
 		System.out.println(deck);
+		
+		System.out.println("");
+		
+		Deck theDeck = new Deck();
+		
+		System.out.println(theDeck);
 	}
 }
