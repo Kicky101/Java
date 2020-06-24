@@ -25,8 +25,12 @@ public class Deck {
 	}
 	public void shuffle() {
 		Random rand = new Random();
-		for(int i = 0; i<theDeck.length; i++) {
-			
+		for(int i = 0; i<1000; i++) {
+			int x = rand.nextInt(theDeck.length);
+			int y = rand.nextInt(theDeck.length);
+			Card temp = theDeck[x];
+			theDeck[x] = theDeck[y];
+			theDeck[y] = temp;
         }
 	}
 }

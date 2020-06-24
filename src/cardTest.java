@@ -13,5 +13,11 @@ public class cardTest {
 		Deck theDeck = new Deck();
 		
 		System.out.println(theDeck);
+		
+		theDeck.shuffle();
+		
+		System.out.println("");
+		
+		System.out.println(theDeck);
 	}
 }
