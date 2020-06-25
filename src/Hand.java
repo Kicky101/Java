@@ -6,6 +6,14 @@ public class Hand {
 		theHand = new Card[11];
 	}
 	public void Draw(Card card) {
-	
+		// Could use something like Card temp = theDeck[x], and then turn theDeck[x] to null, while putting temp into the hand
+		// Could use setters to set a card's number and suit in the hand, while turning the card into null in the deck (Emergency option)
+		// For counter to increase, could use a loop of some sort
+		// Find a way to set card to theDeck[1] (setters???)
+		for(int i = 0; i < theHand.length; i++) {
+			Card temp = card;
+			theHand[counter] = temp;
+			counter++;
+		}
 	}
 }

@@ -33,4 +33,7 @@ public class Deck {
 			theDeck[y] = temp;
         }
 	}
+	public void draw(Card card) {
+		card = theDeck[1];
+	}
 }
