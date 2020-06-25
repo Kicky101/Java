@@ -19,7 +19,9 @@ public class Deck {
 	public String toString() {
 		String temp = "";
 		for(int i = 0; i<theDeck.length; i++) {
-			temp+=theDeck[i]+"\n";
+			if(theDeck[i] != null) {
+				temp+=theDeck[i]+"\n";
+			}
 		}
 		return temp;
 	}
@@ -33,7 +35,9 @@ public class Deck {
 			theDeck[y] = temp;
         }
 	}
-	public void draw(Card card) {
-		card = theDeck[1];
+	public Card Draw() {
+		Card card = theDeck[0];
+		theDeck[0] = null;
+		return card;
 	}
 }
