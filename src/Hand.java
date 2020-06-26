@@ -15,6 +15,10 @@ public class Hand {
 		theHand[counter] = temp;
 		counter++;
 	}
+	public int getHandNumber() {
+		int handNumber = theHand[counter-1].getNumber();
+		return handNumber;
+	}
 	public String toString() {
 		String temp = "";
 		for(int i = 0; i<theHand.length; i++) {

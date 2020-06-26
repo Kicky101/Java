@@ -35,9 +35,11 @@ public class Deck {
 			theDeck[y] = temp;
         }
 	}
+	int counter = 0;
 	public Card Draw() {
-		Card card = theDeck[0];
-		theDeck[0] = null;
+		Card card = theDeck[counter];
+		theDeck[counter] = null;
+		counter++;
 		return card;
 	}
 }
