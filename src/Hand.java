@@ -16,6 +16,9 @@ public class Hand {
 		counter++;
 	}
 	public int getHandNumber() {
+		if(theHand[counter-1].getNumber() > 10) {
+			return 10;
+		}
 		int handNumber = theHand[counter-1].getNumber();
 		return handNumber;
 	}

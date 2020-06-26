@@ -8,10 +8,14 @@ public class cardTest {
 		
 		System.out.println(theHand);
 		
+		theDeck.shuffle();
+		
 		theHand.Draw(theDeck.Draw());
 
 		System.out.println(theDeck);
 		
 		System.out.println(theHand);
+		
+		System.out.println(theHand.getHandNumber());
 	}
 }
