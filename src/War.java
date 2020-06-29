@@ -21,6 +21,16 @@ public class War {
 				boolean loopOne = true;
 				while(loopOne) {
 					
+					// Order
+					// 1. Print the first card of each players hand
+					// 2. Get the number of each card
+					// 3. Find out which card has the higher number
+					// 4. Find out which player was the one who gave the card with the higher number
+					// 5. Return both cards to the players hands
+					// Repeat
+					
+					
+					System.out.println();
 				}
 			}
 			else if(start.toLowerCase().equals("no")) {

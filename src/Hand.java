@@ -2,19 +2,30 @@
 public class Hand {
 	private Card[] theHand;
 	private int counter = 0;
+	private int rightHandCounter = 0;
+	private int leftHandCounter = 0;
 	public Hand() {
-		theHand = new Card[11];
+		theHand = new Card[52];
 	}
 	public void Draw(Card card) {
-		// Could use something like Card temp = theDeck[x], and then turn theDeck[x] to null, while putting temp into the hand
-		// Could use setters to set a card's number and suit in the hand, while turning the card into null in the deck (Emergency option)
-		// For counter to increase, could use a loop of some sort
-		// Find a way to set card to theDeck[1] (setters???)
-		// Have to get card from Deck into the card from Hand
 		Card temp = card;
 		theHand[counter] = temp;
 		counter++;
 	}
+	public void rightHandDraw() {
+		Card card = theHand[leftHandCounter];
+		theHand[rightHandCounter + 26] = card;
+		theHand[leftHandCounter] = null;
+		rightHandCounter++;
+	}
+	
+	//public Card Draw() {
+		//Card card = theDeck[counter];
+		//theDeck[counter] = null;
+		//counter++;
+		//return card;
+	//}
+	
 	public int getHandNumber() {
 		if(theHand[counter-1].getNumber() > 10) {
 			return 10;
