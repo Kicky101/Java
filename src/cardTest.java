@@ -16,8 +16,9 @@ public class cardTest {
 		System.out.println("");
 		System.out.println(theDeck);
 		
-		rightHand.Draw(theDeck.Draw());
-		rightHand.Draw(theDeck.Draw());
+		rightHand.Draw2(theDeck.Draw());
+		rightHand.Draw2(theDeck.Draw());
+		rightHand.Draw2(theDeck.Draw());
 		
 		System.out.println("Right hand with 1 card");
 		System.out.println("");
@@ -29,6 +30,9 @@ public class cardTest {
 		System.out.println(leftHand);
 		
 		leftHand.Draw2(rightHand.handDraw());
+		
+		System.out.println(leftHand);
+		
 		leftHand.Draw2(rightHand.handDraw());
 		
 		System.out.println("Left hand with 1 card");

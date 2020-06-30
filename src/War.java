@@ -16,8 +16,8 @@ public class War {
 				Hand warHand = new Hand();
 				theDeck.shuffle();
 				for(int i = 0; i < 26; i++) {
-					rightHand.Draw(theDeck.Draw());
-					leftHand.Draw(theDeck.Draw());
+					rightHand.Draw2(theDeck.Draw());
+					leftHand.Draw2(theDeck.Draw());
 				}
 				System.out.println(rightHand);
 				System.out.println("");

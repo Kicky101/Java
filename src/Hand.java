@@ -16,12 +16,13 @@ public class Hand {
 		Card temp = card;
 		theHand[handCounter] = temp;
 		handCounter++;
+		System.out.println(handCounter);
 	}
 	public Card handDraw() {
 		Card card = theHand[handCounter];
 		theHand[handCounter] = null;
-		handCounter++;
-		return card;		
+		handCounter--;
+		return card;
 	}
 	public int getHandNumber() {
 		if(theHand[counter-1].getNumber() > 10) {
