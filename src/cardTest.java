@@ -2,20 +2,43 @@ public class cardTest {
 	public static void main(String[] args) {
 		Deck theDeck = new Deck();
 		
-		Hand theHand = new Hand();
+		Hand rightHand = new Hand();
 		
+		Hand leftHand = new Hand();
+		
+		System.out.println("Unshuffled Deck");
+		System.out.println("");
 		System.out.println(theDeck);
-		
-		System.out.println(theHand);
-		
+
 		theDeck.shuffle();
 		
-		theHand.Draw(theDeck.Draw());
-
+		System.out.println("Shuffled Deck");
+		System.out.println("");
 		System.out.println(theDeck);
 		
-		System.out.println(theHand);
+		rightHand.Draw(theDeck.Draw());
+		rightHand.Draw(theDeck.Draw());
 		
-		System.out.println(theHand.getHandNumber());
+		System.out.println("Right hand with 1 card");
+		System.out.println("");
+		System.out.println(rightHand);
+		
+		System.out.println("Empty left hand");
+		System.out.println("");
+		
+		System.out.println(leftHand);
+		
+		leftHand.Draw2(rightHand.handDraw());
+		leftHand.Draw2(rightHand.handDraw());
+		
+		System.out.println("Left hand with 1 card");
+		System.out.println("");
+		System.out.println(leftHand);
+		
+		System.out.println("Empty right hand");
+		System.out.println("");
+		System.out.println(rightHand);
+		
+		System.out.println("hi");
 	}
 }

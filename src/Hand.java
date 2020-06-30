@@ -2,8 +2,8 @@
 public class Hand {
 	private Card[] theHand;
 	private int counter = 0;
-	private int rightHandCounter = 0;
-	private int leftHandCounter = 0;
+	private int handCounter = 0;
+	
 	public Hand() {
 		theHand = new Card[52];
 	}
@@ -12,26 +12,34 @@ public class Hand {
 		theHand[counter] = temp;
 		counter++;
 	}
-	public void rightHandDraw() {
-		Card card = theHand[leftHandCounter];
-		theHand[rightHandCounter + 26] = card;
-		theHand[leftHandCounter] = null;
-		rightHandCounter++;
+	public void Draw2(Card card) {
+		Card temp = card;
+		theHand[handCounter] = temp;
+		handCounter++;
 	}
-	
-	//public Card Draw() {
-		//Card card = theDeck[counter];
-		//theDeck[counter] = null;
-		//counter++;
-		//return card;
-	//}
-	
+	public Card handDraw() {
+		Card card = theHand[handCounter];
+		theHand[handCounter] = null;
+		handCounter++;
+		return card;		
+	}
 	public int getHandNumber() {
 		if(theHand[counter-1].getNumber() > 10) {
 			return 10;
 		}
 		int handNumber = theHand[counter-1].getNumber();
 		return handNumber;
+	}
+	public int getWarHandNumber() {
+		if(theHand[handCounter].getNumber() == 1) {
+			return 14;
+		}
+		int handNumber = theHand[handCounter].getNumber();
+		return handNumber;
+	}
+	public String getWarHandSuit() {
+		String handSuit = theHand[handCounter].getSuit();	
+		return handSuit;
 	}
 	public String toString() {
 		String temp = "";
