@@ -53,6 +53,9 @@ public class Hand {
 		String handSuit = theHand[drawCounter].getSuit();	
 		return handSuit;
 	}
+	public boolean warWin() {
+		return drawCounter == handCounter;
+	}
 	public String toString() {
 		String temp = "";
 		for(int i = 0; i<theHand.length; i++) {

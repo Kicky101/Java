@@ -17,9 +17,8 @@ public class War {
 					rightHand.Draw2(theDeck.Draw());
 					leftHand.Draw2(theDeck.Draw());
 				}
-				System.out.println(rightHand);
-				System.out.println("");
-				System.out.println(leftHand);
+				int warCheck = 0;
+				int warCounter = 0;
 				boolean loopOne = true;
 				while(loopOne) {
 					
@@ -29,7 +28,19 @@ public class War {
 					// 3. Find out which card has the higher number
 					// 4. Find out which player was the one who gave the card with the higher number
 					// 5. Return both cards to the players hands
+					// 6. Win command
 					// Repeat
+					
+					if(rightHand.warWin())  {
+						System.out.println("Left hand wins!");
+						System.out.println("");
+						break;
+					}
+					if(leftHand.warWin())  {
+						System.out.println("Right hand wins!");
+						System.out.println("");
+						break;
+					}
 					
 					String rightHandSuit = rightHand.getWarHandSuit();
 					String leftHandSuit = leftHand.getWarHandSuit();
@@ -53,39 +64,56 @@ public class War {
 					}
 					
 					if(leftHandNumber == 11) {
-						System.out.println("Right hand drew the Jack of " + leftHandSuit); 
+						System.out.println("Left hand drew the Jack of " + leftHandSuit); 
 					}
 					else if(leftHandNumber == 12) {
-						System.out.println("Right hand drew the Queen of " + leftHandSuit); 
+						System.out.println("Left hand drew the Queen of " + leftHandSuit); 
 					}
 					else if(leftHandNumber == 13) {
-						System.out.println("Right hand drew the King of " + leftHandSuit); 
+						System.out.println("Left hand drew the King of " + leftHandSuit); 
 					}
 					else if(leftHandNumber == 14) {
-						System.out.println("Right hand drew the Ace of " + leftHandSuit); 
+						System.out.println("Left hand drew the Ace of " + leftHandSuit); 
 					}
 					else {
-						System.out.println("Right hand drew " + leftHandNumber + " of " + leftHandSuit); 
+						System.out.println("Left hand drew " + leftHandNumber + " of " + leftHandSuit); 
 					}
 					
 					if(rightHandNumber < leftHandNumber) {
 						leftHand.Draw2(rightHand.handDraw());
-						for(int i = 0; i < 26; i++) {
-							rightHand.Draw2(warHand.handDraw());
+						leftHand.Draw2(leftHand.handDraw());
+						System.out.println("");
+						if(warCheck == 1) {
+							for(int i = 0; i < warCounter; i++) {
+								leftHand.Draw2(warHand.handDraw());
+							}
+							warCheck = 0;
 						}
-						loop = false;
 					}
 					if(leftHandNumber < rightHandNumber) {
 						rightHand.Draw2(leftHand.handDraw());
-						for(int i = 0; i < 26; i++) {
-							leftHand.Draw2(warHand.handDraw());
+						rightHand.Draw2(rightHand.handDraw());
+						System.out.println("");
+						if(warCheck == 1) {
+							for(int i = 0; i < warCounter; i++) {
+								rightHand.Draw2(warHand.handDraw());
+							}
+							warCheck = 0;
 						}
-						loop = false;
 					}
 					if(rightHandNumber == leftHandNumber) {
-						warHand.Draw2(rightHand.handDraw());
-						warHand.Draw2(leftHand.handDraw());
-						loop = false;
+						for(int i = 0; i < 4; i++) {
+							warHand.Draw2(rightHand.handDraw());
+							warCounter++;
+						}
+						for(int i = 0; i < 4; i++) {
+							warHand.Draw2(leftHand.handDraw());
+							warCounter++;
+						}
+						System.out.println("");
+						System.out.println("WAR");
+						System.out.println("");
+						warCheck = 1;
 					}
 				}
 			}
