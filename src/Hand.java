@@ -3,6 +3,7 @@ public class Hand {
 	private Card[] theHand;
 	private int counter = 0;
 	private int handCounter = 0;
+	private int drawCounter = 0;
 	
 	public Hand() {
 		theHand = new Card[52];
@@ -12,16 +13,26 @@ public class Hand {
 		theHand[counter] = temp;
 		counter++;
 	}
+	public void Repeat() {
+		if(theHand[handCounter + 1] == null) {
+			
+		}
+	}
 	public void Draw2(Card card) {
 		Card temp = card;
 		theHand[handCounter] = temp;
 		handCounter++;
-		System.out.println(handCounter);
+		if(handCounter == 52) {
+			handCounter = 0;
+		}
 	}
 	public Card handDraw() {
-		Card card = theHand[handCounter];
-		theHand[handCounter] = null;
-		handCounter--;
+		Card card = theHand[drawCounter];
+		theHand[drawCounter] = null;
+		drawCounter++;
+		if(drawCounter == 52) {
+			drawCounter = 0;
+		}
 		return card;
 	}
 	public int getHandNumber() {
@@ -32,14 +43,14 @@ public class Hand {
 		return handNumber;
 	}
 	public int getWarHandNumber() {
-		if(theHand[handCounter].getNumber() == 1) {
+		if(theHand[drawCounter].getNumber() == 1) {
 			return 14;
 		}
-		int handNumber = theHand[handCounter].getNumber();
+		int handNumber = theHand[drawCounter].getNumber();
 		return handNumber;
 	}
 	public String getWarHandSuit() {
-		String handSuit = theHand[handCounter].getSuit();	
+		String handSuit = theHand[drawCounter].getSuit();	
 		return handSuit;
 	}
 	public String toString() {

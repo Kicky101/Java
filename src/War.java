@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-// This is a funny WIP
-
 public class War {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
