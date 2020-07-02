@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class War {
+public class riggedWar {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
@@ -27,21 +27,40 @@ public class War {
 				System.out.println(leftHand);
 				while(loopOne) {
 					
-					// 1. Mystery of the Counter Part 1
-					// 2. Mystery of the Counter Part 2
-					// 3. Trial of the Counter
-					// 4. Revenge of the Counter
-					// 5. Curse of the Counter
-					
-					if(leftHand.warWin())  {
-						System.out.println("Right hand wins!");
+					if (turnCounter == 1000000000) {
+						System.out.println("Get a life");
 						System.out.println("");
 						break;
 					}
+					
+					// Order
+					// 1. Print the first card of each players hand
+					// 2. Get the number of each card
+					// 3. Find out which card has the higher number
+					// 4. Find out which player was the one who gave the card with the higher number
+					// 5. Return both cards to the players hands
+					// 6. Win command
+					// Repeat
+					
 					if(rightHand.warWin())  {
-						System.out.println("Left hand wins!");
 						System.out.println("");
-						break;
+						System.out.println("Left hand wins?");
+						System.out.println("");
+						rightHand.Draw2(leftHand.handDraw());
+						rightHand.Draw2(leftHand.handDraw());
+						rightHand.Draw2(leftHand.handDraw());
+						rightHand.Draw2(leftHand.handDraw());
+						rightHand.Draw2(leftHand.handDraw());
+					}
+					if(leftHand.warWin())  {
+						System.out.println("");
+						System.out.println("Right hand wins?");
+						System.out.println("");
+						leftHand.Draw2(rightHand.handDraw());
+						leftHand.Draw2(rightHand.handDraw());
+						leftHand.Draw2(rightHand.handDraw());
+						leftHand.Draw2(rightHand.handDraw());
+						leftHand.Draw2(rightHand.handDraw());
 					}
 					
 					String rightHandSuit = rightHand.getWarHandSuit();
@@ -128,7 +147,7 @@ public class War {
 						warCheck = 1;
 					}
 					try {
-						Thread.sleep(1);
+						Thread.sleep(0);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -146,3 +165,4 @@ public class War {
 		scan.close();
 	}
 }
+

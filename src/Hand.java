@@ -54,7 +54,12 @@ public class Hand {
 		return handSuit;
 	}
 	public boolean warWin() {
-		return drawCounter == handCounter;
+		for(int i = 0; i < theHand.length; i++) {
+			if(theHand[i] != null) {
+				return false;
+			}
+		}
+		return true;
 	}
 	public String toString() {
 		String temp = "";
