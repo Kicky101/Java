@@ -1,5 +1,5 @@
 
-public class Shape {
+public abstract class Shape {
 	private int area = 0;
 	private int perimeter = 0;
 	public Shape(int a, int p) {
@@ -12,9 +12,5 @@ public class Shape {
 	public int getPerimeter() {
 		return perimeter;
 	}
-	public String toString() {
-		String temp = "";
-		temp = "The area is " + area + ", and the perimeter is " + perimeter;
-		return temp;
-	}
+	public abstract String toString();
 }

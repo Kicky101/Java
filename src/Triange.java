@@ -11,4 +11,10 @@ public class Triange extends Shape {
 		this.side3 = side3;
 		this.height = height;
 	}
+	@Override
+	public String toString() {
+		String temp = "";
+		temp = "The left side is " + side1 + ", the right side is " + side2 + ", the bottom side is " + side3 + ", the height is " + height + ", the area is " + super.getArea() + ", the perimeter is " + super.getPerimeter();
+		return temp;
+	}
 }

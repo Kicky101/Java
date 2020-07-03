@@ -1,14 +1,15 @@
 
 public class shapeTest {
 	public static void main(String[] args) {
-		Shape shape = new Shape(0, 1);
 		Triange triange = new Triange(0, 1, 0, 0, 0, 0);
-		Rectange rectange = new Rectange(0, 1, 0, 0, 90);
-		System.out.println(shape.getArea());
-		System.out.println(shape.getPerimeter());
-		System.out.println(triange.getArea());
-		System.out.println(triange.getPerimeter());
-		System.out.println(rectange.getArea());
-		System.out.println(rectange.getPerimeter());
+		Rectange rectange = new Rectange(0, 1, 0, 0);
+		Paraeogram paraeogram = new Paraeogram(0, 1, 0, 0, 0, 0);
+		Shape[] shape = new Shape[3];
+		shape[0] = triange;
+		shape[1] = rectange;
+		shape[2] = paraeogram;
+		System.out.println(shape[0]);
+		System.out.println(shape[1]);
+		System.out.println(shape[2]);
 	}
 }
