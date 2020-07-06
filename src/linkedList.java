@@ -15,7 +15,7 @@ public class linkedList {
 			}
 			else {
 				Node newNode = new Node(x);
-				newNode = headNode.getNextNode();
+				newNode = headNode;
 				boolean loop = true;
 				while(loop) {
 					newNode = newNode.getNextNode();
@@ -28,9 +28,42 @@ public class linkedList {
 			}
 		}
 	}
+	public void remove() {
+		if(headNode.getNextNode() == null) {
+			headNode = null;
+		}
+		else {
+			Node newNode;
+			newNode = headNode;
+			boolean loop = true;
+			while(loop) {
+				if(newNode.getNextNode().getNextNode() == null) {
+					loop = false;
+				}
+				else {
+					newNode = newNode.getNextNode();
+				}
+			}
+			newNode.setNextNode(null);
+		}
+	}
+	public void specificAdd(int x) {
+		
+	}
 	public String toString() {
 		String temp = "";
-		temp = "";
+		boolean loop = true;
+		Node newNode;
+		newNode = headNode;
+		while(loop) {
+			temp = temp + newNode;
+			temp = temp + "\n";
+			temp = temp + "\n";
+			if(newNode.getNextNode() == null) {
+				loop = false;
+			}
+			newNode = newNode.getNextNode();
+		}	
 		return temp;
 	}
 }
