@@ -60,14 +60,27 @@ public class linkedList {
 			headNode = new Node(x);
 		}
 		else {
+			Node tempoNode = new Node(x);
 			if(y == 0) {
+				tempoNode = headNode;
 				headNode = new Node(x);
+				headNode.setNextNode(tempoNode);
 			}
-			for(int i = 0; i < y-1; i++) {
-				newNode = newNode.getNextNode();
+			else {
+				tempoNode = newNode.getNextNode();
+				//tempo = 1
+				tempoNode.setNextNode(tempoNode);
+				//5 = 1
+				//This doesnt work because the node this is stored in is replaced
+				for(int i = 0; i < y-1; i++) {
+					newNode = newNode.getNextNode();
+				}
+				//new = 0
+				Node tempNode = new Node(x);
+				//temp = 7
+				newNode.setNextNode(tempNode);
+				//1 = 7
 			}
-			Node tempNode = new Node(x);
-			newNode.setNextNode(tempNode);
 		}
 		counter++;
 	}
