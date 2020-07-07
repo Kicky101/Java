@@ -1,6 +1,7 @@
 
 public class linkedList {
 	private Node headNode;
+	private int counter = 0;
 	public linkedList() {
 		
 	}
@@ -27,6 +28,7 @@ public class linkedList {
 				newNode.setNextNode(tempNode);
 			}
 		}
+		counter++;
 	}
 	public void remove() {
 		if(headNode.getNextNode() == null) {
@@ -46,9 +48,28 @@ public class linkedList {
 			}
 			newNode.setNextNode(null);
 		}
+		counter--;
 	}
-	public void specificAdd(int x) {
-		
+	public void specificAdd(int x, int y) {
+		Node newNode = new Node(x);
+		newNode = headNode;
+		if(y > counter) {
+			newNode = null;
+		}
+		else if(headNode == null) {
+			headNode = new Node(x);
+		}
+		else {
+			if(y == 0) {
+				headNode = new Node(x);
+			}
+			for(int i = 0; i < y-1; i++) {
+				newNode = newNode.getNextNode();
+			}
+			Node tempNode = new Node(x);
+			newNode.setNextNode(tempNode);
+		}
+		counter++;
 	}
 	public String toString() {
 		String temp = "";
