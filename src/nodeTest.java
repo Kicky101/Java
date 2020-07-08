@@ -25,7 +25,17 @@ public class nodeTest {
 		
 		System.out.println("");
 		
-		linkedList.specificAdd(7, 1);
+		linkedList.specificAdd(4,2);
+		
+		System.out.print(linkedList.toString());
+		
+		System.out.println("BREAK");
+		
+		System.out.println("");
+		
+		linkedList.specificRemove(0);
+		
+		linkedList.specificRemove(0);
 		
 		System.out.print(linkedList.toString());
 	}

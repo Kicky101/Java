@@ -67,22 +67,47 @@ public class linkedList {
 				headNode.setNextNode(tempoNode);
 			}
 			else {
-				tempoNode = newNode.getNextNode();
-				//tempo = 1
-				tempoNode.setNextNode(tempoNode);
-				//5 = 1
-				//This doesnt work because the node this is stored in is replaced
 				for(int i = 0; i < y-1; i++) {
 					newNode = newNode.getNextNode();
 				}
-				//new = 0
+				tempoNode = newNode.getNextNode();
 				Node tempNode = new Node(x);
-				//temp = 7
 				newNode.setNextNode(tempNode);
-				//1 = 7
+				newNode = newNode.getNextNode();
+				newNode.setNextNode(tempoNode);
 			}
 		}
 		counter++;
+	}
+	public void specificRemove(int y) {
+		Node newNode;
+		newNode = headNode;
+		if(y >= counter) {
+			newNode = null;
+		}
+		else if(headNode.getNextNode() == null) {
+			headNode = null;
+		}
+		else {
+			if(y == 0) {
+				Node tempNode;
+				tempNode = headNode.getNextNode().getNextNode();
+				int x = headNode.getNextNode().getData();
+				headNode = null;
+				headNode = new Node(x);
+				headNode.setNextNode(tempNode);
+			}
+			else {
+				for(int i = 0; i < y-1; i++) {
+					newNode = newNode.getNextNode();
+				}
+				Node tempNode;
+				tempNode = newNode.getNextNode().getNextNode();
+				newNode.setNextNode(null);
+				newNode.setNextNode(tempNode);
+			}
+		}
+		counter--;
 	}
 	public String toString() {
 		String temp = "";

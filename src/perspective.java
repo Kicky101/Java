@@ -85,7 +85,7 @@ public class perspective {
 				System.out.println();
 				typeln("You pour your Beerios into the bowl and go to the fridge to get milk");
 			}
-			else if(cereal.toLowerCase().equals("beerios")) {
+			else if(cereal.toLowerCase().equals("ronald's puffs")) {
 				typeln("You make the well balanced decision of eating a tasty cereal in the morning");
 				typeln("You pour your Ronald's Puffs into the bowl and go to the fridge to get milk");
 			}
