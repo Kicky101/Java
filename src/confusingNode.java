@@ -1,22 +1,30 @@
 
 public class confusingNode {
 	private int data = 0;
-	private Node nextNode;
-	public Node(int z) {
+	private Node rightNode;
+	private Node leftNode;
+	public confusingNode(int z) {
 		data = z;
-		nextNode = null;
+		rightNode = null;
+		leftNode = null;
 	}
 	public int getData() {
 		return data;
 	}
-	public Node getNextNode() {
-		return nextNode;
+	public Node getRightNode() {
+		return rightNode;
+	}
+	public Node getLeftNode() {
+		return leftNode;
 	}
 	public void setData(int x) {
 		data = x;
 	}
-	public void setNextNode(Node y) {
-		nextNode = y;
+	public void setRightNode(Node y) {
+		rightNode = y;
+	}
+	public void setLeftNode(Node y) {
+		leftNode = y;
 	}
 	public String toString() {
 		String temp = "";
