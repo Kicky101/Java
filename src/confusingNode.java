@@ -1,8 +1,8 @@
 
 public class confusingNode {
 	private int data = 0;
-	private Node rightNode;
-	private Node leftNode;
+	private confusingNode rightNode;
+	private confusingNode leftNode;
 	public confusingNode(int z) {
 		data = z;
 		rightNode = null;
@@ -11,19 +11,19 @@ public class confusingNode {
 	public int getData() {
 		return data;
 	}
-	public Node getRightNode() {
+	public confusingNode getRightNode() {
 		return rightNode;
 	}
-	public Node getLeftNode() {
+	public confusingNode getLeftNode() {
 		return leftNode;
 	}
 	public void setData(int x) {
 		data = x;
 	}
-	public void setRightNode(Node y) {
+	public void setRightNode(confusingNode y) {
 		rightNode = y;
 	}
-	public void setLeftNode(Node y) {
+	public void setLeftNode(confusingNode y) {
 		leftNode = y;
 	}
 	public String toString() {
