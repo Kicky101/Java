@@ -1,7 +1,6 @@
 
 public class Tree {
 	private confusingNode headNode;
-	public Tree Tree;
 	public Tree() {
 		
 	}
@@ -14,18 +13,25 @@ public class Tree {
 		}
 	}
 	public void addRecursion(int x, confusingNode newNode) {
-		if(newNode.getRightNode() == null) {
-			if(x > newNode.getData()) {
-				newNode = new confusingNode(x);
-				newNode.setRightNode(newNode);
+		if(x > newNode.getData()) {
+			if(newNode.getRightNode() == null) {
+				confusingNode tempNode = new confusingNode(x);
+				newNode.setRightNode(tempNode);
 				// add to right
 			}
+			else {
+				addRecursion(x, newNode = newNode.getRightNode());
+			}
 		}
-		else if(newNode.getLeftNode() == null) {
-			if(x <= newNode.getData()) {
-				newNode = new confusingNode(x);
-				newNode.setLeftNode(newNode);
+		else if(x <= newNode.getData()) {
+			if(newNode.getLeftNode() == null) {
+				confusingNode tempNode = new confusingNode(x);
+				//THIS THING
+				newNode.setLeftNode(tempNode);
 				// add to left
+			}
+			else {
+				addRecursion(x, newNode = newNode.getLeftNode());
 			}
 		}
 		else {
@@ -46,23 +52,20 @@ public class Tree {
 		String temp = "";
 		if(newNode.getRightNode() != null && newNode.getLeftNode() == null) {
 			// only one node on the right
-			recursiveToString(newNode = newNode.getLeftNode());
-			temp = "This node contains " + newNode.getData();
+			temp = temp + "This node contains " + newNode.getData() + recursiveToString(newNode = newNode.getRightNode());
 		}
 		else if(newNode.getRightNode() == null && newNode.getLeftNode() != null) {
 			// only one node on the left
-			recursiveToString(newNode = newNode.getRightNode());
-			temp = "This node contains " + newNode.getData();
+			temp = temp + "This node contains " + newNode.getData() + recursiveToString(newNode = newNode.getLeftNode());
 		}
 		else if(newNode.getRightNode() != null && newNode.getLeftNode() != null) {
 			// one node on both right and left
-			recursiveToString(newNode = newNode.getRightNode());
-			temp = "This node contains " + newNode.getData();
-			recursiveToString(newNode = newNode.getLeftNode());
-			temp = "This node contains " + newNode.getData();
+			temp = temp + "This node contains " + newNode.getData() + recursiveToString(newNode = newNode.getLeftNode());
+			temp = temp + "This node contains " + newNode.getData() + recursiveToString(newNode = newNode.getRightNode());
 		}
 		else if(newNode.getRightNode() == null && newNode.getLeftNode() == null) {
 			// no nodes on both right and left
+			temp = temp + "This node contains " + newNode.getData();
 			return temp;
 		}
 		return temp;
