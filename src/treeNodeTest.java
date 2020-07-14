@@ -23,5 +23,9 @@ public class treeNodeTest {
 		Tree.add(7);
 		
 		System.out.println(Tree.toString());
+		
+		Tree.remove(7);
+		
+		System.out.println(Tree.toString());
 	}
 }
