@@ -48,38 +48,51 @@ public class Tree {
 	public void remove(int x) {
 		removeRecursion(x, headNode);
 	}
+	// walk through to find issue
 	public void removeRecursion(int x, confusingNode newNode) {
 		if(x > newNode.getData()) {
 			if(newNode.getRightNode().getData() == x) {
-				if(newNode.getRightNode().getRightNode() == null) {
-					confusingNode tempNode = new confusingNode(x);
-					tempNode = newNode.getRightNode().getRightNode();
-					newNode.setRightNode(tempNode);
+				if(newNode.getRightNode().getRightNode() != null) {
+					if(newNode.getRightNode().getLeftNode() == null) {
+						confusingNode tempNode = new confusingNode(x);
+						tempNode = newNode.getRightNode().getRightNode();
+						newNode.setRightNode(tempNode);
+					}
+					// The scary if statement goes here
 				}
-				else if(newNode.getRightNode().getLeftNode() == null) {
-					confusingNode tempNode = new confusingNode(x);
-					tempNode = newNode.getLeftNode().getLeftNode();
-					newNode.setLeftNode(tempNode);
+				if(newNode.getRightNode().getLeftNode() != null) {
+					if(newNode.getRightNode().getRightNode() == null) {
+						confusingNode tempNode = new confusingNode(x);
+						tempNode = newNode.getRightNode().getLeftNode();
+						newNode.setLeftNode(tempNode);
+					}
+					// The scary if statement goes here
 				}
 				else {
 					newNode.setRightNode(null);
 				}
 			}
 		}
-		else if(x <= newNode.getData()) {
+		if(x <= newNode.getData()) {
 			if(newNode.getLeftNode().getData() == x) {
-				if(newNode.getLeftNode().getRightNode() == null) {
-					confusingNode tempNode = new confusingNode(x);
-					tempNode = newNode.getRightNode().getRightNode();
-					newNode.setRightNode(tempNode);
+				if(newNode.getLeftNode().getRightNode() != null) {
+					if(newNode.getLeftNode().getLeftNode() == null) {
+						confusingNode tempNode = new confusingNode(x);
+						tempNode = newNode.getLeftNode().getRightNode();
+						newNode.setRightNode(tempNode);
+					}
+					// The scary if statement goes here
 				}
-				else if(newNode.getLeftNode().getLeftNode() == null) {
-					confusingNode tempNode = new confusingNode(x);
-					tempNode = newNode.getLeftNode().getLeftNode();
-					newNode.setLeftNode(tempNode);
+				if(newNode.getLeftNode().getLeftNode() != null) {
+					if(newNode.getLeftNode().getRightNode() == null) {
+						confusingNode tempNode = new confusingNode(x);
+						tempNode = newNode.getLeftNode().getLeftNode();
+						newNode.setLeftNode(tempNode);
+					}
+					// The scary if statement goes here
 				}
 				else {
-					newNode.setRightNode(null);
+					newNode.setLeftNode(null);
 				}
 			}
 		}
@@ -101,15 +114,15 @@ public class Tree {
 		String temp = "";
 		if(newNode.getRightNode() != null && newNode.getLeftNode() == null) {
 			// only one node on the right
-			temp = temp + "This node contains " + newNode.getData() + "\n" + recursiveToString(newNode.getRightNode());
+			temp = temp + "This node contains " + newNode.getData() + ", with a right node of " + newNode.getRightNode().getData() + "\n" + recursiveToString(newNode.getRightNode());
 		}
 		else if(newNode.getRightNode() == null && newNode.getLeftNode() != null) {
 			// only one node on the left
-			temp = temp + "This node contains " + newNode.getData() + "\n" + recursiveToString(newNode.getLeftNode());
+			temp = temp + "This node contains " + newNode.getData() + ", with a left node of " + newNode.getLeftNode().getData() + "\n" + recursiveToString(newNode.getLeftNode());
 		}
 		else if(newNode.getRightNode() != null && newNode.getLeftNode() != null) {
 			// one node on both right and left
-			temp = temp + "This node contains " + newNode.getData() + "\n" + recursiveToString(newNode.getLeftNode());
+			temp = temp + "This node contains " + newNode.getData() + ", with a left node of " + newNode.getLeftNode().getData() + ", and with a right node of " + newNode.getRightNode().getData() + "\n" + recursiveToString(newNode.getLeftNode());
 			temp += recursiveToString(newNode.getRightNode());
 		}
 		else if(newNode.getRightNode() == null && newNode.getLeftNode() == null) {
