@@ -48,7 +48,6 @@ public class Tree {
 	public void remove(int x) {
 		removeRecursion(x, headNode);
 	}
-	// walk through to find issue
 	public void removeRecursion(int x, confusingNode newNode) {
 		if(x > newNode.getData()) {
 			if(newNode.getRightNode().getData() == x) {
@@ -59,7 +58,40 @@ public class Tree {
 						newNode.setRightNode(tempNode);
 						return;
 					}
-					// The scary if statement goes here
+					else {
+						confusingNode rightTempNode = new confusingNode(x);
+						rightTempNode = newNode.getRightNode().getRightNode();
+						while(rightTempNode.getLeftNode() != null) {
+							rightTempNode = rightTempNode.getLeftNode();
+						}
+						confusingNode leftTempNode = new confusingNode(x);
+						leftTempNode = newNode.getRightNode().getLeftNode();
+						while(leftTempNode.getRightNode() != null) {
+							leftTempNode = leftTempNode.getRightNode();
+						}
+						int rightNumber = newNode.getRightNode().getData() - rightTempNode.getData();
+						java.lang.Math.abs(rightNumber);
+						int leftNumber = newNode.getRightNode().getData() - leftTempNode.getData();
+						java.lang.Math.abs(leftNumber);
+						if(rightNumber < leftNumber) {
+							newNode.setRightNode(rightTempNode);
+							newNode = newNode.getRightNode();
+							newNode.setLeftNode(leftTempNode);
+							return;
+						}
+						else if(leftNumber < rightNumber) {
+							newNode.setLeftNode(rightTempNode);
+							newNode = newNode.getLeftNode();
+							newNode.setRightNode(rightTempNode);
+							return;
+						}
+						else if(rightNumber == leftNumber) {
+							newNode.setRightNode(rightTempNode);
+							newNode = newNode.getRightNode();
+							newNode.setLeftNode(leftTempNode);
+							return;
+						}
+					}
 				}
 				else if(newNode.getRightNode().getLeftNode() != null) {
 					if(newNode.getRightNode().getRightNode() == null) {
