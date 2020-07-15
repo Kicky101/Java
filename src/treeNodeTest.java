@@ -5,7 +5,7 @@ public class treeNodeTest {
 		
 		//      3
 		//    2   5
-		//  1       8
+		//  1       51
 		//        7
 		
 		
@@ -19,13 +19,13 @@ public class treeNodeTest {
 		
 		Tree.add(1);
 		
-		Tree.add(8);
+		Tree.add(51);
 		
 		Tree.add(7);
 		
 		System.out.println(Tree.toString());
 		
-		Tree.remove(8);
+		Tree.remove(7);
 		
 		System.out.println(Tree.toString());
 	}

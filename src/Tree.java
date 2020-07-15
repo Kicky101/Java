@@ -57,19 +57,22 @@ public class Tree {
 						confusingNode tempNode = new confusingNode(x);
 						tempNode = newNode.getRightNode().getRightNode();
 						newNode.setRightNode(tempNode);
+						return;
 					}
 					// The scary if statement goes here
 				}
-				if(newNode.getRightNode().getLeftNode() != null) {
+				else if(newNode.getRightNode().getLeftNode() != null) {
 					if(newNode.getRightNode().getRightNode() == null) {
 						confusingNode tempNode = new confusingNode(x);
 						tempNode = newNode.getRightNode().getLeftNode();
-						newNode.setLeftNode(tempNode);
+						newNode.setRightNode(tempNode);
+						return;
 					}
 					// The scary if statement goes here
 				}
 				else {
 					newNode.setRightNode(null);
+					return;
 				}
 			}
 		}
@@ -79,33 +82,34 @@ public class Tree {
 					if(newNode.getLeftNode().getLeftNode() == null) {
 						confusingNode tempNode = new confusingNode(x);
 						tempNode = newNode.getLeftNode().getRightNode();
-						newNode.setRightNode(tempNode);
+						newNode.setLeftNode(tempNode);
+						return;
 					}
 					// The scary if statement goes here
 				}
-				if(newNode.getLeftNode().getLeftNode() != null) {
+				else if(newNode.getLeftNode().getLeftNode() != null) {
 					if(newNode.getLeftNode().getRightNode() == null) {
 						confusingNode tempNode = new confusingNode(x);
 						tempNode = newNode.getLeftNode().getLeftNode();
 						newNode.setLeftNode(tempNode);
+						return;
 					}
 					// The scary if statement goes here
 				}
 				else {
 					newNode.setLeftNode(null);
+					return;
 				}
 			}
 		}
-		else {
-			if(x > newNode.getData()) {
-				removeRecursion(x, newNode = newNode.getRightNode());
-				// move down right
-			}
-			else if(x <= newNode.getData()) {
-				removeRecursion(x, newNode = newNode.getLeftNode());
-				// move down left
-			}
+		if(x > newNode.getData()) {
+			removeRecursion(x, newNode = newNode.getRightNode());
+			// move down right
 		}
+		else if(x <= newNode.getData()) {
+			removeRecursion(x, newNode = newNode.getLeftNode());
+			// move down left
+		}	
 	}
 	public String toString() {
 		return recursiveToString(headNode);
