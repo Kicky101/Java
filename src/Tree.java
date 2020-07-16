@@ -49,7 +49,6 @@ public class Tree {
 		removeRecursion(x, headNode);
 	}
 	public void removeRecursion(int x, confusingNode newNode) {
-		/*
 		if(x == headNode.getData()) {
 			if(headNode.getRightNode() != null) {
 				if(headNode.getLeftNode() == null) {
@@ -70,30 +69,48 @@ public class Tree {
 						leftTempNode = leftTempNode.getRightNode();
 					}
 					int rightNumber = headNode.getData() - rightTempNode.getData();
-					java.lang.Math.abs(rightNumber);
+					rightNumber = java.lang.Math.abs(rightNumber);
 					int leftNumber = headNode.getData() - leftTempNode.getData();
-					java.lang.Math.abs(leftNumber);
+					leftNumber = java.lang.Math.abs(leftNumber);
 					if(rightNumber < leftNumber) {
-						newNode.setRightNode(rightTempNode);
-						newNode = newNode.getRightNode();
-						newNode.setLeftNode(leftTempNode);
+						confusingNode lTempNode = new confusingNode(x);
+						confusingNode rTempNode = new confusingNode(x);
+						lTempNode = headNode.getLeftNode();
+						rTempNode = headNode.getRightNode();
+						headNode = rightTempNode;
+						headNode.setLeftNode(lTempNode);
+						if(rTempNode != rightTempNode) {
+							headNode.setRightNode(rTempNode);
+						}
 						return;
 					}
 					else if(leftNumber < rightNumber) {
-						newNode.setLeftNode(rightTempNode);
-						newNode = newNode.getLeftNode();
-						newNode.setRightNode(rightTempNode);
+						confusingNode rTempNode = new confusingNode(x);
+						confusingNode lTempNode = new confusingNode(x);
+						rTempNode = headNode.getRightNode();
+						lTempNode = headNode.getLeftNode();
+						headNode = leftTempNode;
+						headNode.setRightNode(rTempNode);
+						if(lTempNode != leftTempNode) {
+							headNode.setLeftNode(lTempNode);
+						}
 						return;
 					}
 					else if(rightNumber == leftNumber) {
-						newNode.setRightNode(rightTempNode);
-						newNode = newNode.getRightNode();
-						newNode.setLeftNode(leftTempNode);
+						confusingNode lTempNode = new confusingNode(x);
+						confusingNode rTempNode = new confusingNode(x);
+						lTempNode = headNode.getLeftNode();
+						rTempNode = headNode.getRightNode();
+						headNode = rightTempNode;
+						headNode.setLeftNode(lTempNode);
+						if(rTempNode != rightTempNode) {
+							headNode.setRightNode(rTempNode);
+						}
 						return;
+					}
 				}
 			}
 		}
-		*/
 		if(x > newNode.getData()) {
 			if(newNode.getRightNode().getData() == x) {
 				if(newNode.getRightNode().getRightNode() != null) {
@@ -115,9 +132,9 @@ public class Tree {
 							leftTempNode = leftTempNode.getRightNode();
 						}
 						int rightNumber = newNode.getRightNode().getData() - rightTempNode.getData();
-						java.lang.Math.abs(rightNumber);
+						rightNumber = java.lang.Math.abs(rightNumber);
 						int leftNumber = newNode.getRightNode().getData() - leftTempNode.getData();
-						java.lang.Math.abs(leftNumber);
+						leftNumber = java.lang.Math.abs(leftNumber);
 						if(rightNumber < leftNumber) {
 							confusingNode lTempNode = new confusingNode(x);
 							confusingNode rTempNode = new confusingNode(x);
@@ -160,13 +177,10 @@ public class Tree {
 					}
 				}
 				else if(newNode.getRightNode().getLeftNode() != null) {
-					if(newNode.getRightNode().getRightNode() == null) {
-						confusingNode tempNode = new confusingNode(x);
-						tempNode = newNode.getRightNode().getLeftNode();
-						newNode.setRightNode(tempNode);
-						return;
-					}
-					// The scary if statement goes here
+					confusingNode tempNode = new confusingNode(x);
+					tempNode = newNode.getRightNode().getLeftNode();
+					newNode.setRightNode(tempNode);
+					return;
 				}
 				else {
 					newNode.setRightNode(null);
@@ -183,16 +197,67 @@ public class Tree {
 						newNode.setLeftNode(tempNode);
 						return;
 					}
-					// The scary if statement goes here
+					else {
+						confusingNode rightTempNode = new confusingNode(x);
+						rightTempNode = newNode.getLeftNode().getRightNode();
+						while(rightTempNode.getLeftNode() != null) {
+							rightTempNode = rightTempNode.getLeftNode();
+						}
+						confusingNode leftTempNode = new confusingNode(x);
+						leftTempNode = newNode.getLeftNode().getLeftNode();
+						while(leftTempNode.getRightNode() != null) {
+							leftTempNode = leftTempNode.getRightNode();
+						}
+						int rightNumber = newNode.getLeftNode().getData() - rightTempNode.getData();
+						rightNumber = java.lang.Math.abs(rightNumber);
+						int leftNumber = newNode.getLeftNode().getData() - leftTempNode.getData();
+						leftNumber = java.lang.Math.abs(leftNumber);
+						if(rightNumber < leftNumber) {
+							confusingNode lTempNode = new confusingNode(x);
+							confusingNode rTempNode = new confusingNode(x);
+							lTempNode = newNode.getLeftNode().getLeftNode();
+							rTempNode = newNode.getLeftNode().getRightNode();
+							newNode.setRightNode(rightTempNode);
+							newNode = newNode.getLeftNode();
+							newNode.setLeftNode(lTempNode);
+							if(rTempNode != rightTempNode) {
+								newNode.setRightNode(rTempNode);
+							}
+							return;
+						}
+						else if(leftNumber < rightNumber) {
+							confusingNode rTempNode = new confusingNode(x);
+							confusingNode lTempNode = new confusingNode(x);
+							rTempNode = newNode.getLeftNode().getRightNode();
+							lTempNode = newNode.getLeftNode().getLeftNode();
+							newNode.setLeftNode(leftTempNode);
+							newNode = newNode.getLeftNode();
+							newNode.setRightNode(rTempNode);
+							if(lTempNode != leftTempNode) {
+								newNode.setLeftNode(lTempNode);
+							}
+							return;
+						}
+						else if(rightNumber == leftNumber) {
+							confusingNode lTempNode = new confusingNode(x);
+							confusingNode rTempNode = new confusingNode(x);
+							lTempNode = newNode.getLeftNode().getLeftNode();
+							rTempNode = newNode.getLeftNode().getRightNode();
+							newNode.setLeftNode(rightTempNode);
+							newNode = newNode.getLeftNode();
+							newNode.setLeftNode(lTempNode);
+							if(rTempNode != rightTempNode) {
+								newNode.setRightNode(rTempNode);
+							}
+							return;
+						}
+					}
 				}
 				else if(newNode.getLeftNode().getLeftNode() != null) {
-					if(newNode.getLeftNode().getRightNode() == null) {
-						confusingNode tempNode = new confusingNode(x);
-						tempNode = newNode.getLeftNode().getLeftNode();
-						newNode.setLeftNode(tempNode);
-						return;
-					}
-					// The scary if statement goes here
+					confusingNode tempNode = new confusingNode(x);
+					tempNode = newNode.getLeftNode().getLeftNode();
+					newNode.setLeftNode(tempNode);
+					return;
 				}
 				else {
 					newNode.setLeftNode(null);
@@ -233,5 +298,28 @@ public class Tree {
 			return temp;
 		}
 		return temp;
+	}
+	public void print() {
+		truePrint(headNode);
+	}
+	public void truePrint(confusingNode newNode) {
+		if(newNode.getRightNode() != null && newNode.getLeftNode() == null) {
+			System.out.print("This node contains " + newNode.getData() + ", with a right node of " + newNode.getRightNode().getData() + "\n");
+			truePrint(newNode.getRightNode());
+		}
+		else if(newNode.getRightNode() == null && newNode.getLeftNode() != null) {
+			System.out.print("This node contains " + newNode.getData() + ", with a left node of " + newNode.getLeftNode().getData() + "\n");
+			truePrint(newNode.getLeftNode());
+		}
+		else if(newNode.getRightNode() != null && newNode.getLeftNode() != null) {
+			System.out.print("This node contains " + newNode.getData() + ", with a left node of " + newNode.getLeftNode().getData() + ", and with a right node of " + newNode.getRightNode().getData() + "\n");
+			truePrint(newNode.getRightNode());
+			truePrint(newNode.getLeftNode());
+		}
+		else if(newNode.getRightNode() == null && newNode.getLeftNode() == null) {
+			System.out.print("This node contains " + newNode.getData() + "\n");
+			return;
+		}
+		return;
 	}
 }

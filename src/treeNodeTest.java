@@ -3,32 +3,60 @@ public class treeNodeTest {
 	public static void main(String[] args) {
 		Tree Tree = new Tree();
 		
-		//      3
-		//    2   5
-		//  1       8
-		//        7   10
+		//        8
+		//      6   10
+		//    4       13
+		//  3   5   12   15
 		
 		
 		
 		
-		Tree.add(3);
+		Tree.add(4);
 		
-		Tree.add(2);
+		Tree.add(94);
 		
-		Tree.add(5);
+		Tree.add(95);
 		
-		Tree.add(1);
+		Tree.add(53);
 		
-		Tree.add(10);
+		Tree.add();
 		
-		Tree.add(7);
+		Tree.add();
 		
-		Tree.add(15);
+		Tree.add();
 		
-		System.out.println(Tree.toString());
+		Tree.add();
 		
-		Tree.remove(10);
+		Tree.add();
 		
-		System.out.println(Tree.toString());
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.add();
+		
+		Tree.print();
+		
+		System.out.println("");
+		
+		Tree.remove(4);
+		
+		Tree.print();
 	}
 }
