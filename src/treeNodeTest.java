@@ -6,7 +6,7 @@ public class treeNodeTest {
 		//      3
 		//    2   5
 		//  1       8
-		//        7   9
+		//        7   10
 		
 		
 		
@@ -19,15 +19,15 @@ public class treeNodeTest {
 		
 		Tree.add(1);
 		
-		Tree.add(8);
+		Tree.add(10);
 		
 		Tree.add(7);
 		
-		Tree.add(10);
+		Tree.add(15);
 		
 		System.out.println(Tree.toString());
 		
-		Tree.remove(8);
+		Tree.remove(10);
 		
 		System.out.println(Tree.toString());
 	}
