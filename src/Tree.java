@@ -299,6 +299,56 @@ public class Tree {
 		}
 		return temp;
 	}
+	public void get(int x) {
+		getNodeRecursion(x, headNode, "");
+	}
+	public void getNodeRecursion(int x, confusingNode newNode, String location) {
+		if(newNode == headNode) {
+			location = "Starting from the head node, " + x + " is ";
+		}
+		int rightNum = 0;
+		int leftNum = 0;
+		if(x == headNode.getData()) {
+			location = x + " is the head node";
+			System.out.println(location);
+			return;
+		}
+		if(x > newNode.getData()) {
+			boolean loop = true;
+			while(loop) {
+				rightNum++;
+				if(newNode.getRightNode() == null) {
+					location = location + rightNum + " to the right";
+					loop = false;
+					System.out.println(location);
+					return;
+				}
+				if(x <= newNode.getRightNode().getData()) {
+					location = location + rightNum + " to the right, ";
+					loop = false;
+				}
+				newNode = newNode.getRightNode();
+			}
+		}
+		if(x <= newNode.getData()) {
+			boolean loop = true;
+			while(loop) {
+				leftNum++;
+				if(newNode.getLeftNode() == null) {
+					location = location + leftNum + " to the left";
+					loop = false;
+					System.out.println(location);
+					return;
+				}
+				if(x <= newNode.getLeftNode().getData()) {
+					location = location + leftNum + " to the left, ";
+					loop = false;
+				}
+				newNode = newNode.getLeftNode();
+			}
+		}
+		getNodeRecursion(x, newNode, location);
+	}
 	public void print() {
 		truePrint(headNode);
 	}

@@ -11,52 +11,31 @@ public class treeNodeTest {
 		
 		
 		
+		Tree.add(8);
+		
+		Tree.add(6);
+		
 		Tree.add(4);
 		
-		Tree.add(94);
+		Tree.add(10);
 		
-		Tree.add(95);
+		Tree.add(13);
 		
-		Tree.add(53);
+		Tree.add(12);
 		
-		Tree.add();
+		Tree.add(15);
 		
-		Tree.add();
+		Tree.add(3);
 		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
-		
-		Tree.add();
+		Tree.add(5);
 		
 		Tree.print();
 		
 		System.out.println("");
 		
-		Tree.remove(4);
+		Tree.get(6);
 		
-		Tree.print();
+		
+
 	}
 }
