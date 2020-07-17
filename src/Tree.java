@@ -316,36 +316,52 @@ public class Tree {
 		if(x > newNode.getData()) {
 			boolean loop = true;
 			while(loop) {
-				rightNum++;
 				if(newNode.getRightNode() == null) {
-					location = location + rightNum + " to the right";
+					rightNum++;
 					loop = false;
-					System.out.println(location);
-					return;
 				}
 				if(x <= newNode.getRightNode().getData()) {
-					location = location + rightNum + " to the right, ";
 					loop = false;
 				}
+				rightNum++;
 				newNode = newNode.getRightNode();
 			}
+			if(newNode.getRightNode() == null) {
+				location = location + rightNum + " to the right";
+				System.out.println(location);
+				return;
+			}
+			if(newNode.getData() == x) {
+				location = location + rightNum + " to the right";
+				System.out.println(location);
+				return;
+			}
+				location = location + rightNum + " to the right, ";
 		}
 		if(x <= newNode.getData()) {
 			boolean loop = true;
 			while(loop) {
-				leftNum++;
 				if(newNode.getLeftNode() == null) {
-					location = location + leftNum + " to the left";
-					loop = false;
-					System.out.println(location);
-					return;
-				}
-				if(x <= newNode.getLeftNode().getData()) {
-					location = location + leftNum + " to the left, ";
+					leftNum++;
 					loop = false;
 				}
+				if(x >= newNode.getLeftNode().getData()) {
+					loop = false;
+				}
+				leftNum++;
 				newNode = newNode.getLeftNode();
 			}
+			if(newNode.getLeftNode() == null) {
+				location = location + leftNum + " to the left";
+				System.out.println(location);
+				return;
+			}
+			if(newNode.getData() == x) {
+				location = location + leftNum + " to the left";
+				System.out.println(location);
+				return;
+			}
+				location = location + leftNum + " to the left, ";
 		}
 		getNodeRecursion(x, newNode, location);
 	}
