@@ -10,7 +10,7 @@ public class endlessQueue {
 		boolean loop = true;
 		while(loop) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(0);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
