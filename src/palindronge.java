@@ -7,12 +7,7 @@ public class palindronge {
 		System.out.print("Insert your word: ");
 		String wordBeta = scan.nextLine();
 		String word = removeWhiteSpaces(wordBeta).toLowerCase();
-		int x = 0;
-		for(int i = 0; i < word.length(); i++) {   
-			if(word.charAt(i) != ' ') {
-				x++;
-			}
-        }
+		int x = word.length();
 		
 		if(x % 2 == 0) {
 			int middle = x / 2;
