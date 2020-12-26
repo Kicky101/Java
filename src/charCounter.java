@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import java.util.ArrayList;
-
 public class charCounter {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
@@ -16,11 +14,6 @@ public class charCounter {
 		System.out.println();
 		System.out.println(x);
 		System.out.println();
-		
-		
-		
-		
-		
 		scan.close();
 	}
 }
