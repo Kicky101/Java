@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class hello {
 	public static void main(String[] args) {
+		/*
 		Scanner scan = new Scanner(System.in);
 		System.out.println("What will your square be made of?");
 		String y = scan.next();
@@ -15,6 +16,10 @@ public class hello {
 				System.out.print(y + " ");
 			}
 			System.out.println();
+		}
+		*/
+		for(int i = 0; i<5; i++) {
+			System.out.println("poggie");
 		}
 	}
 }
