@@ -21,7 +21,7 @@ public class russianRoulette {
 		deathMessage.add(" died an honarable death");
 		deathMessage.add(" died at the hands of their worst enemy");
 		deathMessage.add(" should've kept the safety on");
-		randomQuote.add(" stares into " + characters.get(Placeholder) + "'s lifeless eyes");
+		deathMessage.add(" has been killed in action");
 		int turn = 0;
 		while(loop) {
 			boolean loop1 = true;
@@ -33,7 +33,6 @@ public class russianRoulette {
 				type("Are you done: ");
 				String start = scan.next();
 				if(start.equalsIgnoreCase("yes")) {
-					System.out.println();
 					loop = false;
 					break;
 				}
@@ -49,21 +48,23 @@ public class russianRoulette {
 				}
 			}	
 		}
+		randomQuote.add(" stares into " + characters.get(Placeholder) + "'s lifeless eyes");
 		loop = true;
 		while(loop) {
+			System.out.println();
 			type("Do you want to play with random bullets (random) or a set place (set): ");
 			String gameMode = scan.next();
 			boolean loop1 = true;
 			int deathChecker = 1;
 			if(gameMode.equalsIgnoreCase("random")) {
-				typeln("It's " + characters.get(turn) + "'s turn");
 				System.out.println();
+				typeln("It's " + characters.get(turn) + "'s turn");
 				while(loop1) {
 					System.out.println();
 					Random rand = new Random();
 					int theBullet = rand.nextInt(6);
 					int spin = rand.nextInt(6);
-					int death = rand.nextInt(8);
+					int death = rand.nextInt(9);
 					if(deathChecker == 1) {
 						typeln(characters.get(turn) + " loads in a bullet, spins the round, and prepares to fire");
 					}
@@ -79,15 +80,22 @@ public class russianRoulette {
 							System.out.println();
 							typeln(characters.get(0) + " won, but at what cost?");
 							System.out.println();
-							for(int i = 0; i<graveyard.size(); i++) {
-								if(i + 1 == graveyard.size()) {
-									typeln("and " + graveyard.get(i) + " will be remembered");
-								}
-								else {
-									type(graveyard.get(i) + ", ");
+							if(graveyard.size() == 1) {
+								type(graveyard.get(0) + " will be remembered");
+							}
+							else if(graveyard.size() == 2) {
+								type(graveyard.get(0) + " and " + graveyard.get(1) + " will be remembered");
+							}
+							else {
+								for(int i = 0; i<graveyard.size(); i++) {
+									if(i + 1 == graveyard.size()) {
+										typeln("and " + graveyard.get(i) + " will be remembered");
+									}
+									else {
+										type(graveyard.get(i) + ", ");
+									}
 								}
 							}
-							System.out.println();
 							break;
 						}
 						deathChecker = 1;	
@@ -98,32 +106,43 @@ public class russianRoulette {
 					}
 					System.out.println();
 					// put funny lines here
+					/*
 					int choosePath = rand.nextInt(2);
 					if(choosePath == 1) {
 						
 					}
 					else { 
-						
+						Placeholder = rand.nextInt(graveyard.size());
 					}
-					Placeholder = rand.nextInt(graveyard.size());
-					if(turn + 1 > characters.size()) {
+					*/
+					System.out.println(turn);
+					System.out.println(characters.size());
+					if(turn + 1 < characters.size()) {
 						if(deathChecker == 1) {
-							typeln(characters.get(0) + " picks up the gun from " + characters.get(turn) + "'s limp hand");
+							typeln(characters.get(turn) + " picks up the gun from " + graveyard.get(graveyard.size() - 1) + "'s limp hand");
+						}
+						else {
+							typeln(characters.get(turn) + " hands the gun to " + characters.get(turn + 1));
+							turn++;
+						}
+					}
+					else {
+						if(deathChecker == 1) {
+							typeln(characters.get(0) + " picks up the gun from " + graveyard.get(graveyard.size() - 1) + "'s limp hand");
 						}
 						else {
 							typeln(characters.get(turn) + " hands the gun to " + characters.get(0));
 						}
 						turn = 0;
 					}
-					else {
-						if(deathChecker == 1) {
-							typeln(characters.get(turn + 1) + " picks up the gun from " + characters.get(turn) + "'s limp hand");
-						}
-						else {
-							typeln(characters.get(turn) + " hands the gun to " + characters.get(turn + 1));
-						}
-						turn++;
-					}
+					System.out.println(turn);
+					System.out.println();
+					type("Press Enter to continue...");
+			        try {
+			            int read = System.in.read(new byte[2]);
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			        }
 				}
 			}
 			else if(gameMode.equalsIgnoreCase("set")) {
@@ -132,7 +151,6 @@ public class russianRoulette {
 			else {
 				System.out.println();
 				typeln("That is not a valid option");
-				System.out.println();
 				continue;
 			}
 		}
@@ -144,14 +162,14 @@ public class russianRoulette {
 			System.out.print(hi.charAt(i));
 			if(hi.charAt(i)==' '){
 			try{
-				Thread.sleep(30);
+				Thread.sleep(50);
 				}
 				catch(InterruptedException e){
 				}
 			}
 			else{
 				try{
-					Thread.sleep(15);
+					Thread.sleep(25);
 					}
 					catch(InterruptedException e){
 					}
@@ -164,14 +182,14 @@ public class russianRoulette {
 			System.out.print(hi.charAt(i));
 			if(hi.charAt(i)==' '){
 			try{
-				Thread.sleep(30);
+				Thread.sleep(50);
 				}
 				catch(InterruptedException e){
 				}
 			}
 			else{
 				try{
-					Thread.sleep(15);
+					Thread.sleep(25);
 					}
 					catch(InterruptedException e){
 					}
