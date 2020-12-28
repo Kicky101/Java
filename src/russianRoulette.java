@@ -8,6 +8,7 @@ public class russianRoulette {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		boolean trueLoop = true;
+		Random rand = new Random();
 		while(trueLoop) {
 			boolean loop3 = true;
 			int Placeholder = 0;
@@ -29,6 +30,30 @@ public class russianRoulette {
 			deathMessage.add(" should've kept the safety on");
 			deathMessage.add(" has been killed in action");
 			int turn = 0;
+			int quit = 0;
+			boolean loop2 = true;
+			while(loop2) {
+				type("Do you want to start (start) or quit (quit): ");
+				String start = scan.next();
+				if(start.equalsIgnoreCase("quit")) {
+					quit = 1;
+					trueLoop = false;
+					break;
+				}
+				else if(start.equalsIgnoreCase("start")) {
+					System.out.println();
+					loop2 = false;
+				}
+				else {
+					System.out.println();
+					typeln("That is not a valid option");
+					System.out.println();
+					continue;
+				}
+			}
+			if(quit == 1) {
+				break;
+			}
 			while(loop3) {
 				boolean loop1 = true;
 				type("Add a character: ");
@@ -54,65 +79,84 @@ public class russianRoulette {
 					}
 				}	
 			}
+			graveyard.add("");
 			randomQuote.add(" is sweating profusely");
 			randomQuote.add(" is biting their fingernails");
 			randomQuote.add(" is falling asleep");
 			randomQuote.add(" asks if anyone would rather play rock paper scissors");
 			randomQuote.add(" asks if a slice of pizza is really worth this");
 			randomQuote.add(" starts to cry");
-			randomQuote.add(" stares into " + characters.get(Placeholder) + "'s lifeless eyes");
-			randomQuote.add(" is starting to smell bad");
+			randomQuote.add(" stares into " + graveyard.get(Placeholder) + "'s lifeless eyes");
 			randomQuote.add(" throws up");
 			randomQuote.add(" is considering their life choices");
+			randomQuote.add(" is starting to smell bad");
+			graveyard.clear();
 			boolean loop = true;
 			while(loop) {
 				System.out.println();
-				type("Do you want to start (start) or quit (quit): ");
-				String start = scan.next();
-				if(start.equalsIgnoreCase("quit")) {
-					trueLoop = false;
-					break;
+				String game = "";	
+				type("Do you want to play with random bullets (random) or a set place (set): ");
+				String gameMode = scan.next();
+				if (gameMode.equalsIgnoreCase("random")){
+					game = gameMode;
+					loop = false;
 				}
-				else if(start.equalsIgnoreCase("start")) {
-					System.out.println();
+				else if (gameMode.equalsIgnoreCase("set")){
+					game = gameMode;
+					loop = false;
 				}
 				else {
 					System.out.println();
 					typeln("That is not a valid option");
 					continue;
-				}
-				boolean looper = true;
-				while(looper) {
-					System.out.println();
-					type("Do you want to play with random bullets (random) or a set place (set): ");
-					String gameMode = scan.next();
-					if (!gameMode.equalsIgnoreCase("random") || !gameMode.equalsIgnoreCase("set")){
-						System.out.println();
-						typeln("That is not a valid option");
-						continue;
-					}
-					else {
-						looper = false;
-					}
-				}
+				}				
 				boolean loop1 = true;
 				int deathChecker = 1;
+				int theBullet = 0;
+				int spin = 0;
 				System.out.println();
 				typeln("It's " + characters.get(turn) + "'s turn");
 				while(loop1) {
-					System.out.println();
-					Random rand = new Random();
-					int theBullet = rand.nextInt(6);
-					int spin = rand.nextInt(6);
+					System.out.println();	
 					int death = rand.nextInt(9);
+					int theDeathCheck = 0;
+					if(game.equalsIgnoreCase("random")) {
+						theBullet = rand.nextInt(6);
+						spin = rand.nextInt(6);
+						if(spin == theBullet) {
+							theDeathCheck = 1;
+						}
+					}
+					else {
+						if(deathChecker == 1) {
+							theBullet = rand.nextInt(6);
+							spin = rand.nextInt(6);
+						}
+						else {
+							if(spin < 5) {
+								spin++;
+							}
+							else {
+								spin = 0;
+							}
+						}
+						if(spin == theBullet) {
+							theDeathCheck = 1;
+						}
+					}
 					if(deathChecker == 1) {
 						typeln(characters.get(turn) + " loads in a bullet, spins the round, and prepares to fire");
 					}
 					else {
-						typeln(characters.get(turn) + " spins the round and prepares to fire");
+						if(game.equalsIgnoreCase("random")) {
+							typeln(characters.get(turn) + " spins the round and prepares to fire");
+						}
+						else {
+							typeln(characters.get(turn) + " turns the round and prepares to fire");
+						}
 					}
 					System.out.println();
-					if(spin == theBullet) {
+					if(theDeathCheck == 1) {
 						typeln(characters.get(turn) + deathMessage.get(death));
 						graveyard.add(characters.get(turn));
 						characters.remove(turn);
@@ -158,6 +202,7 @@ public class russianRoulette {
 					        System.out.println();
 					        loop3 = false;
 					        loop = false;
+					        loop2 = false;
 					        loop1 = false;
 							break;
 						}
@@ -172,7 +217,7 @@ public class russianRoulette {
 					int choosePath = rand.nextInt(3);
 					int randCharacter = rand.nextInt(characters.size());
 					int funnyChooser = 0;
-					boolean loop2 = true;
+					loop2 = true;
 					if(choosePath == 1) {
 						if(characters.size() == 1) {
 							funnyChooser = rand.nextInt(3);
@@ -193,14 +238,19 @@ public class russianRoulette {
 					}
 					else { 
 						if(graveyard.size() > 0) {
+							Placeholder = rand.nextInt(graveyard.size());
 							while(loop2) {
 								funnyChooser = rand.nextInt(10);
 								if(funnyChooser > 4) {
 									loop2 = false;
 								}
 							}
-							Placeholder = rand.nextInt(graveyard.size());
-							typeln(characters.get(randCharacter) + randomQuote.get(funnyChooser));
+							if(funnyChooser == 9) {
+								typeln(graveyard.get(Placeholder) + randomQuote.get(funnyChooser));
+							}
+							else {
+								typeln(characters.get(randCharacter) + randomQuote.get(funnyChooser));
+							}
 							System.out.println();
 						}
 					}
