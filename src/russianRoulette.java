@@ -7,65 +7,96 @@ import java.util.Random;
 public class russianRoulette {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		boolean loop3 = true;
-		int Placeholder = 0;
-		ArrayList<String> characters = new ArrayList<String>();
-		ArrayList<String> graveyard = new ArrayList<String>();
-		ArrayList<String> deathMessage = new ArrayList<String>();
-		ArrayList<String> randomQuote = new ArrayList<String>();
-		deathMessage.add(" lost in a glorious fashion");
-		deathMessage.add(" exploded into bits and pieces");
-		deathMessage.add(" is gone for good");
-		deathMessage.add(" is missing a head");
-		deathMessage.add(" went bing bong bang");
-		deathMessage.add(" died an honarable death");
-		deathMessage.add(" died at the hands of their worst enemy");
-		deathMessage.add(" should've kept the safety on");
-		deathMessage.add(" has been killed in action");
-		int turn = 0;
-		while(loop3) {
-			boolean loop1 = true;
-			type("Add a character: ");
-			String characterName = scan.next();
-			characters.add(characterName);
-			System.out.println();
-			while(loop1) {
-				type("Are you done: ");
+		boolean trueLoop = true;
+		while(trueLoop) {
+			boolean loop3 = true;
+			int Placeholder = 0;
+			ArrayList<String> characters = new ArrayList<String>();
+			ArrayList<String> graveyard = new ArrayList<String>();
+			ArrayList<String> deathMessage = new ArrayList<String>();
+			ArrayList<String> randomQuote = new ArrayList<String>();
+			characters.clear();
+			graveyard.clear();
+			deathMessage.clear();
+			randomQuote.clear();
+			deathMessage.add(" lost in a glorious fashion");
+			deathMessage.add(" exploded into bits and pieces");
+			deathMessage.add(" is gone for good");
+			deathMessage.add(" is missing a head");
+			deathMessage.add(" went bing bong bang");
+			deathMessage.add(" died an honarable death");
+			deathMessage.add(" died at the hands of their worst enemy");
+			deathMessage.add(" should've kept the safety on");
+			deathMessage.add(" has been killed in action");
+			int turn = 0;
+			while(loop3) {
+				boolean loop1 = true;
+				type("Add a character: ");
+				String characterName = scan.next();
+				characters.add(characterName);
+				System.out.println();
+				while(loop1) {
+					type("Are you done: ");
+					String start = scan.next();
+					if(start.equalsIgnoreCase("yes")) {
+						loop3 = false;
+						break;
+					}
+					else if(start.equalsIgnoreCase("no")) {
+						System.out.println();
+						loop1 = false;
+					}
+					else {
+						System.out.println();
+						typeln("That is not a valid option");
+						System.out.println();
+						continue;
+					}
+				}	
+			}
+			randomQuote.add(" is sweating profusely");
+			randomQuote.add(" is biting their fingernails");
+			randomQuote.add(" is falling asleep");
+			randomQuote.add(" asks if anyone would rather play rock paper scissors");
+			randomQuote.add(" asks if a slice of pizza is really worth this");
+			randomQuote.add(" starts to cry");
+			randomQuote.add(" stares into " + characters.get(Placeholder) + "'s lifeless eyes");
+			randomQuote.add(" is starting to smell bad");
+			randomQuote.add(" throws up");
+			randomQuote.add(" is considering their life choices");
+			boolean loop = true;
+			while(loop) {
+				System.out.println();
+				type("Do you want to start (start) or quit (quit): ");
 				String start = scan.next();
-				if(start.equalsIgnoreCase("yes")) {
-					loop3 = false;
+				if(start.equalsIgnoreCase("quit")) {
+					trueLoop = false;
 					break;
 				}
-				else if(start.equalsIgnoreCase("no")) {
+				else if(start.equalsIgnoreCase("start")) {
 					System.out.println();
-					loop1 = false;
 				}
 				else {
 					System.out.println();
 					typeln("That is not a valid option");
-					System.out.println();
 					continue;
 				}
-			}	
-		}
-		randomQuote.add(" is sweating profusely");
-		randomQuote.add(" is biting their fingernails");
-		randomQuote.add(" is falling asleep");
-		randomQuote.add(" asks if anyone would rather play rock paper scissors");
-		randomQuote.add(" asks if a slice of pizza is really worth this");
-		randomQuote.add(" starts to cry");
-		randomQuote.add(" stares into " + characters.get(Placeholder) + "'s lifeless eyes");
-		randomQuote.add(" is starting to smell bad");
-		randomQuote.add(" throws up");
-		randomQuote.add(" is considering their life choices");
-		boolean loop = true;
-		while(loop) {
-			System.out.println();
-			type("Do you want to play with random bullets (random), a set place (set), or quit (quit): ");
-			String gameMode = scan.next();
-			boolean loop1 = true;
-			int deathChecker = 1;
-			if(gameMode.equalsIgnoreCase("random")) {
+				boolean looper = true;
+				while(looper) {
+					System.out.println();
+					type("Do you want to play with random bullets (random) or a set place (set): ");
+					String gameMode = scan.next();
+					if (!gameMode.equalsIgnoreCase("random") || !gameMode.equalsIgnoreCase("set")){
+						System.out.println();
+						typeln("That is not a valid option");
+						continue;
+					}
+					else {
+						looper = false;
+					}
+				}
+				boolean loop1 = true;
+				int deathChecker = 1;
 				System.out.println();
 				typeln("It's " + characters.get(turn) + "'s turn");
 				while(loop1) {
@@ -85,7 +116,7 @@ public class russianRoulette {
 						typeln(characters.get(turn) + deathMessage.get(death));
 						graveyard.add(characters.get(turn));
 						characters.remove(turn);
-						if(characters.size() == 0) {
+						if(characters.size() <= 1) {
 							if(characters.size() == 0) {
 								System.out.println();
 								typeln("There are no winners");
@@ -101,10 +132,10 @@ public class russianRoulette {
 								typeln(characters.get(0) + " won, but at what cost?");
 								System.out.println();
 								if(graveyard.size() == 1) {
-									type(graveyard.get(0) + " will be remembered");
+									typeln(graveyard.get(0) + " will be remembered");
 								}
 								else if(graveyard.size() == 2) {
-									type(graveyard.get(0) + " and " + graveyard.get(1) + " will be remembered");
+									typeln(graveyard.get(0) + " and " + graveyard.get(1) + " will be remembered");
 								}
 								else {
 									for(int i = 0; i<graveyard.size(); i++) {
@@ -124,7 +155,10 @@ public class russianRoulette {
 					        } catch (Exception e) {
 					            e.printStackTrace();
 					        }
-					        loop = true;
+					        System.out.println();
+					        loop3 = false;
+					        loop = false;
+					        loop1 = false;
 							break;
 						}
 						deathChecker = 1;	
@@ -147,7 +181,13 @@ public class russianRoulette {
 						}
 						else {
 							funnyChooser = rand.nextInt(5);
-							typeln(characters.get(randCharacter) + randomQuote.get(funnyChooser));
+							if(characters.size() == 2) {
+								randomQuote.set(3, " asks if " + characters.get(Math.abs(randCharacter - 1)) + " would rather play rock paper scissors");
+								typeln(characters.get(randCharacter) + randomQuote.get(funnyChooser));
+							}
+							else {
+								typeln(characters.get(randCharacter) + randomQuote.get(funnyChooser));
+							}
 							System.out.println();
 						}		
 					}
@@ -212,19 +252,8 @@ public class russianRoulette {
 			            int read = System.in.read(new byte[2]);
 			        } catch (Exception e) {
 			            e.printStackTrace();
-			        }
+			        }	
 				}
-			}
-			else if(gameMode.equalsIgnoreCase("set")) {
-				loop = false;
-			}
-			else if(gameMode.equalsIgnoreCase("quit")) {
-				break;
-			}
-			else {
-				System.out.println();
-				typeln("That is not a valid option");
-				continue;
 			}
 		}
 		scan.close();
