@@ -119,6 +119,7 @@ public class russianRoulette {
 				while(loop1) {
 					System.out.println();	
 					int death = rand.nextInt(9);
+					int suicide = rand.nextInt(5);
 					int theDeathCheck = 0;
 					if(game.equalsIgnoreCase("random")) {
 						theBullet = rand.nextInt(6);
@@ -191,6 +192,14 @@ public class russianRoulette {
 										}
 									}
 								}
+								if(suicide == 4) {
+									System.out.println();
+									typeln("After all that " + characters.get(0) + " sure doesn't feel like a winner");
+									System.out.println();
+									typeln(characters.get(0) + " loads a bullet into the gun, turns to it, and shoots themselves in the throat");
+									System.out.println();
+									typeln(characters.get(0) + " will be remembered");
+								}
 							}
 							System.out.println();
 							type("Press Enter to continue...");
@@ -247,6 +256,9 @@ public class russianRoulette {
 							}
 							if(funnyChooser == 9) {
 								typeln(graveyard.get(Placeholder) + randomQuote.get(funnyChooser));
+							}
+							else if(funnyChooser == 6) {
+								typeln(characters.get(randCharacter) + " stares into " + graveyard.get(Placeholder) + "'s lifeless eyes");
 							}
 							else {
 								typeln(characters.get(randCharacter) + randomQuote.get(funnyChooser));
