@@ -7,10 +7,10 @@ import java.util.Random;
 public class russianRoulette {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		scan.useDelimiter("\r\n");
 		boolean trueLoop = true;
 		Random rand = new Random();
 		while(trueLoop) {
-			boolean loop3 = true;
 			int Placeholder = 0;
 			ArrayList<String> characters = new ArrayList<String>();
 			ArrayList<String> graveyard = new ArrayList<String>();
@@ -29,6 +29,7 @@ public class russianRoulette {
 			deathMessage.add(" died at the hands of their worst enemy");
 			deathMessage.add(" should've kept the safety on");
 			deathMessage.add(" has been killed in action");
+			deathMessage.add(" pulls the trigger and dies instantly");
 			int turn = 0;
 			int quit = 0;
 			boolean loop2 = true;
@@ -54,31 +55,17 @@ public class russianRoulette {
 			if(quit == 1) {
 				break;
 			}
-			while(loop3) {
-				boolean loop1 = true;
-				type("Add a character: ");
-				String characterName = scan.next();
-				characters.add(characterName);
-				System.out.println();
-				while(loop1) {
-					type("Are you done: ");
-					String start = scan.next();
-					if(start.equalsIgnoreCase("yes")) {
-						loop3 = false;
-						break;
-					}
-					else if(start.equalsIgnoreCase("no")) {
-						System.out.println();
-						loop1 = false;
-					}
-					else {
-						System.out.println();
-						typeln("That is not a valid option");
-						System.out.println();
-						continue;
-					}
-				}	
+			type("Add characters separated by commas: ");
+			String list = scan.next();
+			String tempString = "";
+			Scanner scann = new Scanner(list);
+			scann.useDelimiter(",");
+			while(scann.hasNext()) {
+				tempString = scann.next();
+				tempString = tempString.trim();
+				characters.add(tempString);
 			}
+			scann.close();
 			graveyard.add("");
 			randomQuote.add(" is sweating profusely");
 			randomQuote.add(" is biting their fingernails");
@@ -118,7 +105,7 @@ public class russianRoulette {
 				typeln("It's " + characters.get(turn) + "'s turn");
 				while(loop1) {
 					System.out.println();	
-					int death = rand.nextInt(9);
+					int death = rand.nextInt(10);
 					int suicide = rand.nextInt(5);
 					int theDeathCheck = 0;
 					if(game.equalsIgnoreCase("random")) {
@@ -209,7 +196,6 @@ public class russianRoulette {
 					            e.printStackTrace();
 					        }
 					        System.out.println();
-					        loop3 = false;
 					        loop = false;
 					        loop2 = false;
 					        loop1 = false;
@@ -222,7 +208,6 @@ public class russianRoulette {
 						deathChecker = 0;
 					}
 					System.out.println();
-					// put funny lines here
 					int choosePath = rand.nextInt(3);
 					int randCharacter = rand.nextInt(characters.size());
 					int funnyChooser = 0;
@@ -266,11 +251,6 @@ public class russianRoulette {
 							System.out.println();
 						}
 					}
-					/*
-					System.out.println(turn);
-					System.out.println(characters.size());
-					System.out.println(deathChecker);
-					*/
 					if(characters.size() > 1) {
 						if(turn + 1 <= characters.size()) {
 							if(deathChecker == 1) {
@@ -308,7 +288,6 @@ public class russianRoulette {
 							turn = 0;
 						}
 					}
-					//System.out.println(turn);
 					type("Press Enter to continue...");
 			        try {
 			            int read = System.in.read(new byte[2]);
