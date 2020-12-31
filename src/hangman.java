@@ -6,6 +6,7 @@ public class hangman {
 		scan.useDelimiter("\r\n");
 		boolean trueLoop = true;
 		boolean loop = true;
+		int quit = 0;
 		while(trueLoop) {
 			while(loop) {
 				System.out.print("Do you want to start (start) or quit (quit): ");
@@ -16,6 +17,7 @@ public class hangman {
 				}
 				else if(start.equalsIgnoreCase("quit")) {
 					trueLoop = false;
+					quit = 1;
 					break;
 				}
 				else {
@@ -24,6 +26,9 @@ public class hangman {
 					System.out.println();
 					continue;
 				}
+			}
+			if(quit == 1) {
+				break;
 			}
 			loop = true;
 			int playerMode = 0;
@@ -55,6 +60,8 @@ public class hangman {
 			String stringGuess = "";
 			String screenGuess = "";
 			String alreadyGuessed = "";
+			int alreadyGuessedCheck = 0;
+			String tempString = "";
 			int win = 0;
 			char guess = 0;
 			int guessCheck = 1;
@@ -64,24 +71,57 @@ public class hangman {
 				break;
 			}
 			else {
-				System.out.print("Player 1, please input your word: ");
-				word = scan.next();
-				word = word.trim();
+				loop = true;
+				while(loop) {
+					System.out.print("Player 1, please input your word: ");
+					word = scan.next();
+					word = word.trim();
+					if(word.equals("")) {
+						System.out.println();
+						System.out.println("That is not a valid input");
+						System.out.println();
+						continue;
+					}
+					if(word.matches(".*\\d.*")) {
+						System.out.println();
+						System.out.println("That is not a valid input");
+						System.out.println();
+						continue;
+					}
+					else {
+						loop = false;
+					}
+				}
+				String finishWord = word;
+				word = word.toUpperCase();
 				for(int i = 0; i < 50; i++) {
 					System.out.println();
 				}
 				System.out.println();
+				
 				loop = true;
 				for(int i = 0; i < word.length(); i++) {
-					if(word.charAt(counter) != ' ') {
-						if(screenWord.equals("")) {
+					tempString = "" + word.charAt(counter);
+					if(tempString.matches("[^A-Za-z0-9 ]")) {
+						if(counter == 0) {
+							screenWord = tempString;
+						}
+						else {
+							screenWord = screenWord + " " + tempString;
+						}
+					}
+					else if(word.charAt(counter) != ' ') {
+						if(counter == 0) {
 							screenWord = "_";
 						}
-						screenWord = screenWord + " _";
+						else {
+							screenWord = screenWord + " _";
+						}
 					}
 					else {
 						screenWord = screenWord + "  ";
 					}
+					counter++;
 				}
 				while(loop) {
 					System.out.println(screenWord);
@@ -95,30 +135,34 @@ public class hangman {
 						System.out.println();
 						System.out.println("Player 1 wins!");
 						System.out.println();
-						System.out.println("The word was " + word);
+						System.out.println("The word was " + finishWord);
 						System.out.println();
 						break;
 					}
 					for(int i = 0; i < screenWord.length(); i++) {
-						if(screenWord.charAt(i) == '_') {
-							win = 0;
-						}
-						else {
-							win = 1;
+						if(screenWord.charAt(i) != '_') {
+							win++;
 						}
 					}
-					if(win == 1) {
+					if(win == screenWord.length()) {
 						System.out.println();
 						System.out.println("Player 2 wins!");
 						System.out.println();
+						break;
 					}
+					win = 0;
 					boolean loop1 = true;
 					while(loop1) {
 						System.out.println();
 						System.out.print("Please guess a letter: ");
 						stringGuess = scan.next();
-						stringGuess.toUpperCase();
+						stringGuess = stringGuess.toUpperCase();
 						if(stringGuess.length() > 1) {
+							System.out.println();
+							System.out.println("That is not a valid input");
+							continue;
+						}
+						if(stringGuess.equals("")) {
 							System.out.println();
 							System.out.println("That is not a valid input");
 							continue;
@@ -133,15 +177,32 @@ public class hangman {
 							if(alreadyGuessed.charAt(i) == guess) {
 								System.out.println();
 								System.out.println("You have already guessed this letter");
-								continue;
+								alreadyGuessedCheck = 1;
 							}
 						}
+						if(alreadyGuessedCheck == 1) {
+							alreadyGuessedCheck = 0;
+							continue;
+						}
+						loop1 = false;
 					}
+					System.out.println();
 					counter = 0;
+					int screenCounter = 0;
 					screenGuess = stringGuess.toUpperCase();
 					guessCheck = 0;
+					String oldScreenWord = screenWord;
 					for(int i = 0; i < word.length(); i++) {
-						if(word.charAt(counter) == guess) {
+						tempString = "" + word.charAt(counter);
+						if(tempString.matches("[^A-Za-z0-9 ]")) {
+							if(counter == 0) {
+								screenWord = tempString;
+							}
+							else {
+								screenWord = screenWord + " " + tempString;
+							}
+						}
+						else if(word.charAt(counter) == guess) {
 							guessCheck = 1;
 							if(counter == 0) {
 								screenWord = screenGuess;
@@ -154,28 +215,40 @@ public class hangman {
 							screenWord = screenWord + "  ";
 						}
 						else {
-							if(counter == 0) {
-								screenWord = "_";
+							if(oldScreenWord.charAt(screenCounter) == '_') {
+								if(counter == 0) {
+									screenWord = "_";
+								}
+								else {
+									screenWord = screenWord + " _";
+								}
 							}
 							else {
-								screenWord = screenWord + " _";
+								if(counter == 0) {
+									screenWord = "" + oldScreenWord.charAt(screenCounter);
+								}
+								else {
+									screenWord = screenWord + " " + oldScreenWord.charAt(screenCounter);
+								}
 							}
 						}
 						counter++;
+						screenCounter = screenCounter + 2;
 					}
 					if(guessCheck == 0) {
 						lives--;
 					}
-					alreadyGuessed = alreadyGuessed + screenGuess + " ";
+					if(alreadyGuessed == "") {
+						alreadyGuessed = screenGuess;
+					}
+					else {
+						alreadyGuessed = alreadyGuessed + ", " + screenGuess;
+					}
+					for(int i = 0; i < 50; i++) {
+						System.out.println();
+					}
 				}
 			}
-
-
-			
-			
-			
-			
-			trueLoop = false;
 		}
 		scan.close();
 	}
