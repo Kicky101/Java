@@ -1,9 +1,25 @@
 import java.util.Scanner;
 
+import java.io.File;
+
+import java.io.FileNotFoundException;
+
+import java.util.Random;
+
 public class hangman {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		Random rand = new Random();
 		scan.useDelimiter("\r\n");
+		Scanner fileReader;
+		fileReader = null;
+		try {
+			fileReader = new Scanner(new File("usa2.txt"));
+		}
+		catch(FileNotFoundException e){	
+			System.err.println("The file was not found");
+			System.err.println("Please restart the program");
+		}
 		boolean trueLoop = true;
 		boolean loop = true;
 		int quit = 0;
@@ -72,7 +88,10 @@ public class hangman {
 					System.out.print("Do you want to make the word (make) or guess the word (guess): ");
 					gameMode = scan.next();
 					if(gameMode.equalsIgnoreCase("make")) {
-						loop = false;
+						System.out.println();
+						System.out.println("I can't be bothered to code a crappy AI right now");
+						System.out.println();
+						continue;
 					}
 					else if(gameMode.equalsIgnoreCase("guess")) {
 						loop = false;
@@ -115,8 +134,12 @@ public class hangman {
 						}
 					}
 					else {
-						if(gameMode.equalsIgnoreCase("guess")) {
-							//cpu makes word
+						fileReader.useDelimiter("\r\n");
+						int stopper = 0;
+						stopper = rand.nextInt(77718);
+						stopper++;
+						for(int i = 0; i < stopper; i++) {
+							word = fileReader.next();
 						}
 					}
 				}
@@ -238,6 +261,47 @@ public class hangman {
 						System.out.println();
 						if(gameMode.equalsIgnoreCase("make")) {
 							//CPU guesses word
+							/*
+							int vowelsPresent = 0;
+							int vowelChooser = 0;
+							String vowelGuesser = "";
+							int blankChecker = 0;
+							int repeat = 0;
+							boolean loop2 = true;
+							while(loop2) {
+								for(int i = 0; i < screenWord.length(); i++) {
+									if(screenWord.charAt(i) == 'a' || screenWord.charAt(i) == 'e' || screenWord.charAt(i) == 'i' || screenWord.charAt(i) == 'o' || screenWord.charAt(i) == 'u') {
+										vowelsPresent++;
+									}
+								}
+								for(int i = 0; i < screenWord.length(); i++) {
+									if(screenWord.charAt(i) == '_') {
+										blankChecker++;
+									}
+								}
+								if(blankChecker == word.length()) {
+									vowelChooser = rand.nextInt(5);
+									stringGuess = vowelChoosing(vowelChooser, stringGuess);
+								}
+								if(vowelsPresent < 5 && word.length() > 11 && word.length() < 21) {
+									vowelChooser = rand.nextInt(5);
+									stringGuess = vowelChoosing(vowelChooser, stringGuess);
+								}
+								guess = stringGuess.toUpperCase().charAt(0);
+								for(int i = 0; i < alreadyGuessed.length(); i++) {
+									if(word.charAt(i) == guess) {
+										repeat = 1;
+									}
+								}
+								guess = stringGuess.charAt(0);
+								if(repeat == 1) {
+									continue;
+								}
+								else {
+									loop2 = false;
+								}
+							}
+							*/
 						}
 						else {
 							System.out.print("Please guess a letter: ");
@@ -408,5 +472,24 @@ public class hangman {
 			System.out.println(" |  / \\  ");
 			System.out.println("_|_       ");
 		}
+	}
+	
+	private static String vowelChoosing(int vowelChooser, String stringGuess) {
+		if(vowelChooser == 0) {
+			stringGuess = "a";
+		}
+		if(vowelChooser == 1) {
+			stringGuess = "e";
+		}
+		if(vowelChooser == 2) {
+			stringGuess = "i";
+		}
+		if(vowelChooser == 3) {
+			stringGuess = "o";
+		}
+		if(vowelChooser == 4) {
+			stringGuess = "u";
+		}
+		return stringGuess;
 	}
 }
