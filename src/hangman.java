@@ -15,57 +15,57 @@ public class hangman {
 		boolean trueLoop = true;
 		boolean loop = true;
 		int quit = 0;
+		int playerMode = 0;
 		int justWon = 0;
+		int score = 0;
 		while(trueLoop) {
-			if(justWon != 0) {
-				
-			}
-			while(loop) {
-				if(justWon == 1) {
-					
+			if(justWon == 0) {
+				while(loop) {
+					System.out.print("Do you want to start (start) or quit (quit): ");
+					String start = scan.next();
+					if(start.equalsIgnoreCase("start")) {
+						System.out.println();
+						loop = false;
+					}
+					else if(start.equalsIgnoreCase("quit")) {
+						trueLoop = false;
+						quit = 1;
+						break;
+					}
+					else {
+						System.out.println();
+						System.out.println("That is not a valid input");
+						System.out.println();
+						continue;
+					}
 				}
-				System.out.print("Do you want to start (start) or quit (quit): ");
-				String start = scan.next();
-				if(start.equalsIgnoreCase("start")) {
-					System.out.println();
-					loop = false;
-				}
-				else if(start.equalsIgnoreCase("quit")) {
-					trueLoop = false;
-					quit = 1;
+				if(quit == 1) {
 					break;
 				}
-				else {
-					System.out.println();
-					System.out.println("That is not a valid input");
-					System.out.println();
-					continue;
+				loop = true;
+				while(loop) {
+					System.out.print("Do you want to play with one player (1) or two players (2): ");
+					String player = scan.next();
+					if(player.equals("1")) {
+						System.out.println();
+						playerMode = 1;
+						loop = false;
+					}
+					else if(player.equals("2")) {
+						playerMode = 2;
+						System.out.println();
+						loop = false;
+					}
+					else {
+						System.out.println();
+						System.out.println("That is not a valid input");
+						System.out.println();
+						continue;
+					}
 				}
 			}
-			if(quit == 1) {
-				break;
-			}
-			loop = true;
-			int playerMode = 0;
-			while(loop) {
-				System.out.print("Do you want to play with one player (1) or two players (2): ");
-				String player = scan.next();
-				if(player.equals("1")) {
-					System.out.println();
-					playerMode = 1;
-					loop = false;
-				}
-				else if(player.equals("2")) {
-					playerMode = 2;
-					System.out.println();
-					loop = false;
-				}
-				else {
-					System.out.println();
-					System.out.println("That is not a valid input");
-					System.out.println();
-					continue;
-				}
+			else {
+				playerMode = 1;
 			}
 			int counter = 0;
 			int lives = 6;
@@ -78,32 +78,37 @@ public class hangman {
 			String tempString = "";
 			String gameMode = "";
 			String hiddenWord = "";
-			int score = 0;
 			int win = 0;
 			char guess = 0;
 			int guessCheck = 1;
 			if(playerMode == 1) {
 				boolean loop1 = true;
-				while(loop1) {
-					System.out.print("Do you want to make the word (make) or guess the word (guess): ");
-					gameMode = scan.next();
-					if(gameMode.equalsIgnoreCase("make")) {
-						System.out.println();
-						System.out.println("I can't be bothered to code a crappy AI right now");
-						System.out.println();
-						continue;
-					}
-					else if(gameMode.equalsIgnoreCase("guess")) {
-						loop1 = false;
-						loop = false;
-					}
-					else {
-						System.out.println();
-						System.out.println("That is not a valid input");
-						System.out.println();
-						continue;
+				if(justWon == 0) {
+					while(loop1) {
+						System.out.print("Do you want to make the word (make) or guess the word (guess): ");
+						gameMode = scan.next();
+						if(gameMode.equalsIgnoreCase("make")) {
+							System.out.println();
+							System.out.println("I can't be bothered to code a crappy AI right now");
+							System.out.println();
+							continue;
+						}
+						else if(gameMode.equalsIgnoreCase("guess")) {
+							loop1 = false;
+							loop = false;
+						}
+						else {
+							System.out.println();
+							System.out.println("That is not a valid input");
+							System.out.println();
+							continue;
+						}
 					}
 				}
+				else {
+					gameMode = "guess";
+				}
+				justWon = 0;
 			}
 			loop = true;
 			while(loop) {
@@ -160,7 +165,6 @@ public class hangman {
 				System.out.println();
 			}
 			System.out.println();
-			
 			loop = true;
 			for(int i = 0; i < word.length(); i++) {
 				tempString = "" + word.charAt(counter);
@@ -220,6 +224,11 @@ public class hangman {
 						System.out.println();
 						System.out.println("The word was " + finishWord);
 						System.out.println();
+						if(score > 0) {
+							System.out.println("Your score was " + score);
+						}
+						System.out.println();
+						score = 0;
 						break;
 					}
 					else {
@@ -247,19 +256,38 @@ public class hangman {
 						System.out.println();
 						System.out.println("You win!");
 						System.out.println();
-						System.out.print("Do you want to keep your streak (keep) or go back to the beginning (leave): ");
-						String scoreKeep = scan.next();
-						if(scoreKeep.equalsIgnoreCase("leave")) {
+						boolean finalLoop = true;
+						int finalQuit = 0;
+						while(finalLoop) {
+							System.out.print("Do you want to keep your streak (keep) or go back to the beginning (leave): ");
+							String scoreKeep = scan.next();
+							if(scoreKeep.equalsIgnoreCase("leave")) {
+								score = 0;
+								finalQuit = 1;
+								finalLoop = false;
+								System.out.println();
+								if(score > 0) {
+									System.out.println("Your score was " + score);
+									System.out.println();
+								}
+								score = 0;
+							}
+							else if(scoreKeep.equalsIgnoreCase("keep")) {
+								justWon = 1;
+								score++;
+								System.out.println();
+								finalQuit = 1;
+								finalLoop = false;
+							}
+							else {
+								System.out.println();
+								System.out.println("That is not a valid input");
+								System.out.println();
+								continue;
+							}
+						}
+						if(finalQuit == 1) {
 							break;
-						}
-						else if(scoreKeep.equalsIgnoreCase("keep")) {
-							justWon = 1;
-							score++;
-						}
-						else {
-							System.out.println();
-							System.out.println("That is not a valid input");
-							System.out.println();
 						}
 					}
 					else {
@@ -343,7 +371,7 @@ public class hangman {
 							System.out.println("That is not a valid input");
 							continue;
 						}
-						guess = stringGuess.charAt(0);
+						guess = stringGuess.toUpperCase().charAt(0);
 						for(int i = 0; i < alreadyGuessed.length(); i++) {
 							if(alreadyGuessed.charAt(i) == guess) {
 								System.out.println();
@@ -360,7 +388,6 @@ public class hangman {
 				}
 				System.out.println();
 				counter = 0;
-				guess = stringGuess.toUpperCase().charAt(0);
 				int screenCounter = 0;
 				screenGuess = stringGuess.toUpperCase();
 				guessCheck = 0;
@@ -370,8 +397,6 @@ public class hangman {
 						break;
 					}
 					tempString = "" + word.charAt(counter);
-					System.out.println(word.charAt(counter));
-					System.out.println(guess);
 					if(tempString.matches("[^A-Za-z0-9 ]")) {
 						if(counter == 0) {
 							screenWord = tempString;
