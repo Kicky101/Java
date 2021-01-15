@@ -226,8 +226,9 @@ public class hangman {
 						System.out.println();
 						if(score > 0) {
 							System.out.println("Your score was " + score);
+							System.out.println();
 						}
-						System.out.println();
+						
 						score = 0;
 						break;
 					}
