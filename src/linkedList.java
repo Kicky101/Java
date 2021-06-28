@@ -1,13 +1,13 @@
 
-public class linkedList {
-	private Node headNode;
+public class linkedList<E> {
+	private Node<E> headNode;
 	private int counter = 0;
 	public linkedList() {
 		
 	}
-	public void add(int x) {
+	public void add(E x) {
 		if(headNode == null) {
-			headNode = new Node(x);
+			headNode = new Node<E>(x);
 		}
 		else {
 			if(headNode.getNextNode() == null) {
@@ -92,7 +92,7 @@ public class linkedList {
 			if(y == 0) {
 				Node tempNode;
 				tempNode = headNode.getNextNode().getNextNode();
-				int x = headNode.getNextNode().getData();
+				E x = headNode.getNextNode().getData();
 				headNode = null;
 				headNode = new Node(x);
 				headNode.setNextNode(tempNode);
