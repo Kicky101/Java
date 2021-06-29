@@ -18,8 +18,9 @@ public class hashtest {
 		
 		hashmap.add("password08", 8);
 		
-		hashmap.add("password09", 9);
+		hashmap.add("password10", 10);
 		
+		/*
 		hashmap.add("password10", 10);
 		
 		hashmap.add("password11", 11);
@@ -31,7 +32,7 @@ public class hashtest {
 		hashmap.add("password14", 14);
 		
 		hashmap.add("password15", 15);
-		
+		*/
 		System.out.println(hashmap.get("password01"));
 		
 		System.out.println(hashmap.get("password02"));
@@ -48,8 +49,8 @@ public class hashtest {
 		
 		System.out.println(hashmap.get("password08"));
 		
-		System.out.println(hashmap.get("password09"));
-		
+		System.out.println(hashmap.get("password10"));
+		/*
 		System.out.println(hashmap.get("password10"));
 		
 		System.out.println(hashmap.get("password11"));
@@ -61,5 +62,6 @@ public class hashtest {
 		System.out.println(hashmap.get("password14"));
 		
 		System.out.println(hashmap.get("password15"));
+		*/
 	}
 }
