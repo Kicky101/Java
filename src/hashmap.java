@@ -6,6 +6,7 @@ public class hashmap {
 		if(map[Math.abs(o.hashCode() % map.length)] == null) {
 			entry input = new entry(o, i);
 			map[Math.abs(o.hashCode() % map.length)] = new Node(input);
+			size++;
 		}
 		else {
 			Node<entry> tempholder = map[Math.abs(o.hashCode() % map.length)];
@@ -13,41 +14,85 @@ public class hashmap {
 			map[Math.abs(o.hashCode() % map.length)] = new Node(input);
 			map[Math.abs(o.hashCode() % map.length)].setNextNode(tempholder);
 		}
-		size++;
+		resize();
+		
 	}
 	
 	public int get(Object o) {
-		boolean loop = true;
-		if(map[Math.abs(o.hashCode() % map.length)].getNextNode() == null) {
-			entry placeholder = map[Math.abs(o.hashCode() % map.length)].getData();
-			return placeholder.getterVal();
+		if(map[Math.abs(o.hashCode() % map.length)] == null) {
+			throw new RuntimeException(o + " is an unregistered key");
 		}
 		else {
-			Node<entry> nodePlaceholder = map[Math.abs(o.hashCode() % map.length)];
-			entry placeholder = nodePlaceholder.getData();
-			while(loop) {
-				if(o == placeholder.getterKey()) {
-					loop = false;
-				}
-				else {
-					nodePlaceholder = nodePlaceholder.getNextNode();
-					placeholder = nodePlaceholder.getData();
-				}
+			boolean loop = true;
+			if(map[Math.abs(o.hashCode() % map.length)].getNextNode() == null) {
+				entry placeholder = map[Math.abs(o.hashCode() % map.length)].getData();
+				return placeholder.getterVal();
 			}
-			return  placeholder.getterVal();
+			else {
+				Node<entry> nodePlaceholder = map[Math.abs(o.hashCode() % map.length)];
+				entry placeholder = nodePlaceholder.getData();
+				while(loop) {
+					if(o == placeholder.getterKey()) {
+						loop = false;
+					}
+					else {
+						nodePlaceholder = nodePlaceholder.getNextNode();
+						placeholder = nodePlaceholder.getData();
+					}
+				}
+				return  placeholder.getterVal();
+			}
 		}
 	}
 	
 	public void resize() {
-		if(size * (3/4) >= capacity) {
+		if(size >= capacity * (3.0/4.0)) {
 			capacity = capacity * capacity;
 			Node<entry>[] tempMap = new Node[capacity];
-			boolean loop = true;
-			int counter = 0;
-			Node tempNode = new Node(map[0].getData());
-			while(loop) {
-				tempMap[counter] = tempNode;
-				counter++;
+			for(int j = 0; j < map.length; j++) {
+				if(map[j] != null) {
+					tempMap[Math.abs(map[j].getData().getterKey().hashCode() % tempMap.length)] = map[j];
+				}
+			}
+			map = tempMap;
+		}
+	}
+	
+	public void remove(Object o) {
+		if(map[Math.abs(o.hashCode() % map.length)] == null) {
+			System.out.println(o + " is an unregistered key");
+		}
+		else {
+			if(map[Math.abs(o.hashCode() % map.length)].getNextNode() == null) {
+				map[Math.abs(o.hashCode() % map.length)] = null;
+			}
+			else {
+				boolean loop = true;
+				boolean checker = false;
+				Node<entry> nodePlaceholder = map[Math.abs(o.hashCode() % map.length)];
+				Node<entry> nodePlaceholder2 = nodePlaceholder;
+				entry placeholder = nodePlaceholder.getData();
+				while(loop) {
+					if(o == placeholder.getterKey()) {
+						loop = false;
+					}
+					else {
+						if(checker) {
+							nodePlaceholder2 = nodePlaceholder2.getNextNode();
+						}
+						nodePlaceholder = nodePlaceholder.getNextNode();
+						placeholder = nodePlaceholder.getData();
+						checker = true;
+					}
+				}
+				if(nodePlaceholder.getNextNode() == null) {
+					nodePlaceholder2.setNextNode(null);
+				}
+				else {
+					Node tempNode = new Node(nodePlaceholder.getNextNode());
+					nodePlaceholder2.setNextNode(tempNode);
+				}
+				
 			}
 		}
 	}
