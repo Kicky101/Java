@@ -2,7 +2,7 @@ public class hashmap {
 	int capacity = 10;
 	int size = 0;
 	Node<entry>[] map = new Node[capacity];
-	public void add(Object o, int i) {
+	public void add(Object o, Object i) {
 		if(map[Math.abs(o.hashCode() % map.length)] == null) {
 			entry input = new entry(o, i);
 			map[Math.abs(o.hashCode() % map.length)] = new Node(input);
@@ -18,7 +18,7 @@ public class hashmap {
 		
 	}
 	
-	public int get(Object o) {
+	public Object get(Object o) {
 		if(map[Math.abs(o.hashCode() % map.length)] == null) {
 			throw new RuntimeException(o + " is an unregistered key");
 		}
@@ -100,12 +100,12 @@ public class hashmap {
 
 class entry {
 	private Object key;
-	private int value;
-	public entry(Object o, int i){
+	private Object value;
+	public entry(Object o, Object i){
 		key = o;
 		value = i;
 	}
-	public int getterVal() {
+	public Object getterVal() {
 		return value;
 	}
 	public Object getterKey() {

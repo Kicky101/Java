@@ -33,9 +33,10 @@ public class reecursion2 {
 		}
 	}
 	public static void printFibonacci(int place) {
-		for(int i = 0; i < place; i++) {
-			System.out.println(fibonacci(i));
-		}
+		//for(int i = 0; i < place; i++) {
+		//i
+			System.out.println(fibonacci(place));
+		//}
 	}
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);

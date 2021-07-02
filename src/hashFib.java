@@ -6,10 +6,10 @@ public class hashFib {
 		boolean trueLoop = true;
 		while(trueLoop) {
 			hashmap Hashmap = new hashmap();
-			int finalPlace = 0;
-			int num1 = 1;
-			int num2 = 1;
-			int place = 2;
+			long finalPlace = 0;
+			long num1 = 1;
+			long num2 = 1;
+			long place = 2;
 			boolean finalLoop = true;
 			int quit = 0;
 			boolean loop = true;
@@ -34,10 +34,14 @@ public class hashFib {
 				}
 			}
 			if(finalPlace == 0) {
+				System.out.println();
 				System.out.println("The number there is 0");
+				System.out.println();
 			}
 			else if(finalPlace == 1) {
+				System.out.println();
 				System.out.println("The number there is 1");
+				System.out.println();
 			}
 			else {
 				for(int j = 0; j < finalPlace; j++) {
@@ -46,18 +50,9 @@ public class hashFib {
 					num2 = num1 - num2;
 					place++;
 				}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+				System.out.println();
+				System.out.println("The number there is " + Hashmap.get(finalPlace));
+				System.out.println();
 			}
 			while(finalLoop) {
 				System.out.print("Do you want to find another number (yes) (no): ");
