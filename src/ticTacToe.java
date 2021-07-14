@@ -48,12 +48,13 @@ public class ticTacToe {
 				break;
 			}
 			System.out.println("Computer turn");
-			while(true) {
-				x = rand.nextInt(2)+1;
-				y =  rand.nextInt(2)+1;
+			boolean helpme = true;
+			while(helpme) {
+				x = rand.nextInt(2);
+				y =  rand.nextInt(2);
 				if(board[y][x].equals("-")) {
 					board[y][x] = ("O");
-					break;
+					helpme = false;
 				}else {
 					continue;
 				}
