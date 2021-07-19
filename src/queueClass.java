@@ -1,22 +1,25 @@
-public class queueClass {
+public class queueClass<E> {
 	private int size = 10;
-	private int[] theQueue = new int[size];
-	public int number = 1;
+	private E[] theQueue = (E[]) new Object[size];
+	public int open = 0;
+	public boolean firstCheck = true;
+	public int first = 0;
 	
-	public void add() {
+	public void add(E x) {
 		if(!fullChecker()) {
-			if(theQueue[0] == 0) {
-				theQueue[0] = number;
-				number++;
+			if(theQueue[0] == null) {
+				theQueue[0] = x;
+				if(firstCheck) {
+					first = 0;
+					firstCheck = false;
+				}
 			}
 			else {
-				for(int i = 0; i < theQueue.length-1; i++) {
-					if(theQueue[i] == 0) {
-						theQueue[i] = number;
-						i = theQueue.length-1;
-					}
+				if(firstCheck) {
+					first = 0;
 				}
-				number++;
+				theQueue[open] = x;
+				
 			}
 		}
 		else {
@@ -26,22 +29,32 @@ public class queueClass {
 		}
 	}
 	
+	//1 2 3 4 5 6 7 8 9
+	//0 0 0 0 0 0 7 8 9
+	//10 11 12 0 0 0 7 8 9
+	//10 11 12 0 0 0 0 0 0
+	//0 0 12 0 0 0 0 0 0
+	
+	//1 2 3 4 5 6 7 8 9
+	//0 0 0 0 0 0 0 0 9
+	//10 11 0 0 0 0 0 0 9
+	//0 11 0 0 0 0 0 0 0
 	public void remove() {
-		int counter = 0;
-		theQueue[0] = 0;
-		for(int i = 0; i < theQueue.length-1; i++) {
-			if(theQueue[i+1] != 0) {
-				theQueue[i] = theQueue[i+1];
-				counter++;
-			}
+		/*
+		theQueue[smallest] = null;
+		if(smallest + 1 != 0) {
+			smallest++;
 		}
-		theQueue[counter] = 0;
+		else {
+			smallest = 0;
+		}
+		*/
 	}
 	
 	public boolean fullChecker() {
 		boolean fullChecker = true;
 		for(int j = 0; j < theQueue.length-1; j++) {
-			if(theQueue[j] == 0) {
+			if(theQueue[j] == null) {
 				fullChecker = false;
 			}
 		}
@@ -53,11 +66,11 @@ public class queueClass {
 		boolean loop = true;
 		int x = 0;
 		while(loop) {
-			if(theQueue[0] != 0) {
+			if(theQueue[0] != null) {
 				temp = temp + theQueue[x];
 				temp = temp + "\n";
 			}
-			if(theQueue[x+1] == 0) {
+			if(theQueue[x+1] == null) {
 				loop = false;
 			}
 			x++;
