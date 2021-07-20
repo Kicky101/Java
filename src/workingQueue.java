@@ -10,10 +10,13 @@ public class workingQueue {
 			System.out.print("Do you want to add, remove, or quit: ");
 			String control = scan.next();
 			if(control.toLowerCase().equals("add")) {
+				System.out.println();
+				System.out.print("What do you want to add: ");
+				String item = scan.next();
 				if(queue.fullChecker()) {
 					checker = false;
 				}
-				queue.add();
+				queue.add(item);
 				if(checker) {
 					System.out.println();
 					System.out.println(queue.toString());
