@@ -5,19 +5,30 @@ public class queueClass<E> {
 	private E[] theQueue = (E[]) new Object[size];
 	public int open = 1;
 	public int remove = 0;
+	public int first = 0;
+	public int last = 0;
 	public boolean firstCheck = true;
 	public boolean firstCheck2 = false;
 	
 	public void add(E x) {
-		reset();
+		//reset();
 		if(!fullChecker()) {
-			if(theQueue[0] == null) {
-				if(firstCheck) {
-					theQueue[0] = x;
-					firstCheck = false;
-				}
+			if(theQueue[0] == null && emptyChecker()) {
+				theQueue[0] = x;
+				first = 0;
+				last = 0;
+				firstCheck = false;
 			}
 			else {
+				if(last == theQueue.length-1) {
+					last = 0;
+				}
+				else {
+					last++;
+				}
+				if(open == theQueue.length) {
+					open = 0;
+				}
 				theQueue[open] = x;
 				open++;
 			}
@@ -36,61 +47,83 @@ public class queueClass<E> {
 	//0 0 0 4 5 0 0 0 0
 	
 	public void remove() {
-		reset();
+		//reset();
 		if(!emptyChecker()) {
-			if(remove == 9) {
-				remove = 0;
+			if(first == theQueue.length-1) {
+				first = 0;
 			}
-			if(firstCheck2) {
-				open = remove;
+			else {
+				first++;
 			}
 			theQueue[remove] = null;
 			remove++;
+			if(remove == theQueue.length) {
+				remove = 0;
+			}
+			if(theQueue[remove] == null) {
+				remove = 0;
+				open = 1;
+				first = 0;
+				last = 0;
+			}
+			if(emptyChecker()) {
+				System.out.println();
+				System.out.println("The queue is empty");
+				System.out.println();
+			}
+		}
+		else {
+			System.out.println();
+			System.out.println("The queue is empty");
+			System.out.println();
 		}
 	}
 	
 	public boolean fullChecker() {
-		boolean fullChecker = true;
-		for(int j = 0; j < theQueue.length-1; j++) {
-			if(theQueue[j] == null) {
-				fullChecker = false;
-			}
+		boolean fullChecker = false;
+		if((first == 0 && last >= theQueue.length-1) && theQueue[last] != null) {
+			fullChecker = true;
+		}
+		else if((first == last-1 || last == first-1) && theQueue[last+1] != null) {
+			fullChecker = true;
 		}
 		return fullChecker;
 	}
 	
 	public boolean emptyChecker() {
-		boolean emptyChecker = true;
-		for(int j = 0; j < theQueue.length-1; j++) {
-			if(theQueue[j] != null) {
-				emptyChecker = false;
-			}
+		boolean emptyChecker = false;
+		if((first == 0 && last == 0) && theQueue[0] == null) {
+			emptyChecker = true;
 		}
 		return emptyChecker;
 	}
 	
 	public int itemChecker() {
 		int x = 0;
+		/*
 		for(int j = 0; j < theQueue.length-1; j++) {
 			if(theQueue[j] != null) {
 				x++;
 			}
 		}
+		*/
 		return x;
 	}
 	
 	public void reset() {
-		if(emptyChecker()) {
+		if(emptyChecker() && open == 0) {
 			System.out.println("reset");
 			open = 1;
 			remove = 0;
 			firstCheck = true;
 			firstCheck2 = false;
+			first = 0;
+			last = 0;
 		}
 	}
 	
 	public String toString() {
-		return Arrays.toString(theQueue);
+		return Arrays.toString(theQueue) + "\n";
 		/*
 		String temp = "";
 		boolean loop = true;

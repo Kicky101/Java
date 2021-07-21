@@ -25,8 +25,14 @@ public class workingQueue {
 			}
 			else if(control.toLowerCase().equals("remove")) {
 				queue.remove();
-				System.out.println();
-				System.out.println(queue.toString());
+				if(queue.emptyChecker()) {
+					checker = false;
+				}
+				if(checker) {
+					System.out.println();
+					System.out.println(queue.toString());
+				}
+				checker = true;
 			}
 			else if(control.toLowerCase().equals("quit")) {
 				loop = false;
