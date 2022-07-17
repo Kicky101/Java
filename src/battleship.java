@@ -29,7 +29,6 @@ public class battleship {
 					System.out.print("Do you want to play against a computer (c) or a player (p): ");
 					String start2 = scan.nextLine();
 					if(start2.equals("c")) {
-						System.out.println();
 						clear();
 						System.out.println("Player ship placing phase\n");
 						placeShips(p1Board, scan);
