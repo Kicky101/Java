@@ -30,6 +30,7 @@ public class battleship {
 					String start2 = scan.nextLine();
 					if(start2.equals("c")) {
 						clear();
+						System.out.println();
 						System.out.println("Player ship placing phase\n");
 						placeShips(p1Board, scan);
 						System.out.println("Computer placing ships...\n");
