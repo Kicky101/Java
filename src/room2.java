@@ -1,3 +1,7 @@
+//A grid where a player can move in the four cardinal directions to reach a goal
+//Has screen wrapping functions, and keeps track of the lowest amount of moves it takes to reach the goal
+//Asks the user to play again at the end, and if yes, generates a new goal position while keeping the player position
+
 import java.util.Scanner;
 import java.util.Random;
 
