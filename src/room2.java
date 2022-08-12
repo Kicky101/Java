@@ -27,7 +27,7 @@ public class room2 {
 		boolean loop; //loop for the very end to make sure the user inputs a correct option
 		int best = -1; //keeps track of the lowest number of moves the player makes each game
 		//is -1 for the first game, because no best has been set yet
-		int moves = 1; //keeps track of the amount of moves in the current gamee
+		int moves = 1; //keeps track of the amount of moves in the current game
 		while(!quit.equals("n")) {
 			win = false;
 			System.out.println("Move #"+moves+"\n");
