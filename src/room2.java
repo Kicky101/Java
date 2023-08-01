@@ -47,10 +47,9 @@ public class room2 {
 			move = scan.nextLine();
 			//trim and toLowerCase allow for user flexibility
 			move = move.trim().toLowerCase();
-			//simple version of clearing screen
-			for(int i = 0; i < 100; i++) {
-				System.out.println();
-			}
+			//clear screen
+			System.out.print("\033[H\033[2J");  
+			System.out.flush();  
 			//all options have allowance for screen wrapping
 			//ex: move to the end of one side and end up on the opposite side
 			//all options also check for win
@@ -173,9 +172,8 @@ public class room2 {
 						loop = false;
 						//reset the moves
 						moves = 0;
-						for(int i = 0; i < 100; i++) {
-							System.out.println();
-						}
+						System.out.print("\033[H\033[2J");  
+						System.out.flush();  
 					}
 					else if(quit.equals("n")) {
 						System.out.print("\nThanks for playing!");

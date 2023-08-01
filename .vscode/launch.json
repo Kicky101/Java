@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "room2",
+            "request": "launch",
+            "mainClass": "room2",
+            "projectName": "Logan"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - recursion",
             "request": "launch",
             "mainClass": "recursion",
